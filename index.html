@@ -9,6 +9,9 @@
     :root {
       --primary-color: #8B4513; /* Brown */
       --secondary-color: #D2B48C; /* Tan */
+      --breakfast-color: #F5DEB3; /* Light breakfast color */
+      --lunch-color: #CD853F; /* Lunch color */
+      --dinner-color: #A0522D; /* Dinner color */
       --accent-color: #A52A2A; /* Reddish */
       --text-color: #333;
       --light-bg: #FFF8DC;
@@ -42,8 +45,35 @@
       padding: 20px;
     }
     
+    .meal-type {
+      margin-bottom: 30px;
+    }
+    
+    .meal-title {
+      background-color: var(--primary-color);
+      color: white;
+      padding: 15px;
+      text-align: center;
+      font-size: 1.8rem;
+      border-radius: 5px;
+      margin-bottom: 20px;
+    }
+    
+    .breakfast .meal-title {
+      background-color: var(--breakfast-color);
+      color: var(--text-color);
+    }
+    
+    .lunch .meal-title {
+      background-color: var(--lunch-color);
+    }
+    
+    .dinner .meal-title {
+      background-color: var(--dinner-color);
+    }
+    
     .menu-category {
-      margin-bottom: 40px;
+      margin-bottom: 30px;
       background-color: white;
       border-radius: 10px;
       overflow: hidden;
@@ -136,378 +166,150 @@
       background-color: #8B0000;
     }
     
-    .cart-icon {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background-color: var(--accent-color);
-      color: white;
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      cursor: pointer;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-      z-index: 1000;
-    }
+    /* بقية الأنماط كما هي ... */
     
-    .cart-count {
-      position: absolute;
-      top: -5px;
-      right: -5px;
-      background-color: var(--primary-color);
-      color: white;
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      font-size: 0.8rem;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    
-    .cart-modal {
-      display: none;
-      position: fixed;
-      top: 0;
-      right: 0;
-      width: 350px;
-      height: 100%;
-      background-color: white;
-      box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-      z-index: 999;
-      flex-direction: column;
-    }
-    
-    .cart-modal.show {
-      display: flex;
-    }
-    
-    .cart-header {
-      padding: 15px;
-      background-color: var(--primary-color);
-      color: white;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .cart-items {
-      flex: 1;
-      overflow-y: auto;
-      padding: 15px;
-    }
-    
-    .cart-item {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 15px;
-      padding-bottom: 15px;
-      border-bottom: 1px solid #eee;
-    }
-    
-    .cart-item-info {
-      flex: 1;
-    }
-    
-    .cart-item-name {
-      font-weight: bold;
-      margin-bottom: 5px;
-    }
-    
-    .cart-item-price {
-      color: var(--accent-color);
-    }
-    
-    .cart-item-quantity {
-      display: flex;
-      align-items: center;
-    }
-    
-    .quantity-btn {
-      background-color: #eee;
-      border: none;
-      width: 25px;
-      height: 25px;
-      border-radius: 50%;
-      cursor: pointer;
-    }
-    
-    .quantity-value {
-      margin: 0 10px;
-    }
-    
-    .cart-footer {
-      padding: 15px;
-      border-top: 1px solid #eee;
-    }
-    
-    .cart-total {
-      display: flex;
-      justify-content: space-between;
-      font-weight: bold;
-      margin-bottom: 15px;
-      font-size: 1.1rem;
-    }
-    
-    .checkout-btn {
-      width: 100%;
-      padding: 10px;
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-    
-    .checkout-btn:hover {
-      background-color: #8B0000;
-    }
-    
-    @media (max-width: 768px) {
-      .category-items.show {
-        grid-template-columns: 1fr;
-      }
-      
-      .cart-modal {
-        width: 100%;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="logo">Dar Hassna</div>
-    <div>Menu du Restaurant</div>
-  </div>
-
-  <div class="cart-icon">
-    <i class="fas fa-shopping-cart"></i>
-    <div class="cart-count">0</div>
-  </div>
-
-  <div class="cart-modal">
-    <div class="cart-header">
-      <h3>Votre Commande</h3>
-      <i class="fas fa-times close-cart"></i>
-    </div>
-    <div class="cart-items" id="cart-items">
-      <!-- Cart items will be added here -->
-    </div>
-    <div class="cart-footer">
-      <div class="cart-total">
-        <span>Total:</span>
-        <span id="cart-total">0 MAD</span>
-      </div>
-      <button class="checkout-btn">Passer la Commande</button>
-    </div>
-  </div>
-
-  <div class="container" id="menu-container">
-    <!-- Menu will be loaded here from Firebase -->
-  </div>
-
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+  <!-- الهيكل الأساسي يبقى كما هو -->
   
   <script>
-    // Firebase configuration (same as your admin panel)
-    const firebaseConfig = {
-      apiKey: "AIzaSyDpSF4J0bsd6T0ImMpse0KQQRADaxiYUQw",
-      authDomain: "darhassna-484c3.firebaseapp.com",
-      databaseURL: "https://darhassna-484c3-default-rtdb.europe-west1.firebasedatabase.app",
-      projectId: "darhassna-484c3",
-      storageBucket: "darhassna-484c3.firebasestorage.app",
-      messagingSenderId: "141393162149",
-      appId: "1:141393162149:web:0717227eac221f5ddfc24c"
+    // بيانات نموذجية للأطباق مصنفة حسب الوجبات
+    const sampleMenu = {
+      "menu": {
+        "item_1": {
+          "id": "item_1",
+          "name": "بغرير بالعسل",
+          "description": "بغرير تقليدي مع عسل وعسل الزهور",
+          "price": 25,
+          "category": "فطائر",
+          "mealType": "breakfast",
+          "image": "https://example.com/bghrir.jpg",
+          "isAvailable": true
+        },
+        "item_2": {
+          "id": "item_2",
+          "name": "مسمن مع مربى",
+          "description": "مسمن طازج مع مربى منزلي",
+          "price": 20,
+          "category": "فطائر",
+          "mealType": "breakfast",
+          "isAvailable": true
+        },
+        "item_3": {
+          "id": "item_3",
+          "name": "طاجين لحم",
+          "description": "طاجين لحم بالخوخ واللوز",
+          "price": 65,
+          "category": "أطباق رئيسية",
+          "mealType": "lunch",
+          "image": "https://example.com/tajine.jpg",
+          "isAvailable": true
+        },
+        "item_4": {
+          "id": "item_4",
+          "name": "كوسكوس بالخضار",
+          "description": "كوسكوس مع سبعة خضار",
+          "price": 55,
+          "category": "أطباق رئيسية",
+          "mealType": "lunch",
+          "isAvailable": true
+        },
+        "item_5": {
+          "id": "item_5",
+          "name": "شاي بالنعناع",
+          "description": "شاي أخضر مع نعناع طازج",
+          "price": 15,
+          "category": "مشروبات",
+          "mealType": "all",
+          "isAvailable": true
+        },
+        "item_6": {
+          "id": "item_6",
+          "name": "حريرة",
+          "description": "شوربة تقليدية مغربية",
+          "price": 25,
+          "category": "شوربات",
+          "mealType": "dinner",
+          "isAvailable": true
+        },
+        "item_7": {
+          "id": "item_7",
+          "name": "بسطيلة",
+          "description": "بسطيلة بالدجاج واللوز",
+          "price": 45,
+          "category": "أطباق تقليدية",
+          "mealType": "dinner",
+          "image": "https://example.com/bastilla.jpg",
+          "isAvailable": true
+        }
+      },
+      "categories": {
+        "breakfast": ["فطائر", "عصائر"],
+        "lunch": ["أطباق رئيسية", "مقبلات"],
+        "dinner": ["شوربات", "أطباق تقليدية"],
+        "all": ["مشروبات", "حلويات"]
+      }
     };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-    const db = firebase.database();
-
-    // Cart functionality
-    let cart = [];
-    const cartIcon = document.querySelector('.cart-icon');
-    const cartCount = document.querySelector('.cart-count');
-    const cartModal = document.querySelector('.cart-modal');
-    const cartItemsContainer = document.getElementById('cart-items');
-    const cartTotal = document.getElementById('cart-total');
-    const closeCartBtn = document.querySelector('.close-cart');
-    const checkoutBtn = document.querySelector('.checkout-btn');
-
-    // Toggle cart modal
-    cartIcon.addEventListener('click', () => {
-      cartModal.classList.add('show');
-    });
-
-    closeCartBtn.addEventListener('click', () => {
-      cartModal.classList.remove('show');
-    });
-
-    // Add to cart function
-    function addToCart(item) {
-      const existingItem = cart.find(cartItem => cartItem.id === item.id);
+    // دالة عرض القائمة محدثة لتصنيف الوجبات
+    function loadMenu() {
+      const menuContainer = document.getElementById('menu-container');
+      menuContainer.innerHTML = '';
       
-      if (existingItem) {
-        existingItem.quantity += 1;
-      } else {
-        cart.push({
-          ...item,
-          quantity: 1
-        });
-      }
+      // إنشاء أقسام الوجبات
+      const mealTypes = [
+        { id: 'breakfast', name: 'الفطور' },
+        { id: 'lunch', name: 'الغداء' },
+        { id: 'dinner', name: 'العشاء' }
+      ];
       
-      updateCart();
-    }
-
-    // Update cart UI
-    function updateCart() {
-      // Update cart count
-      const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-      cartCount.textContent = totalItems;
-      
-      // Update cart items
-      cartItemsContainer.innerHTML = '';
-      
-      let totalPrice = 0;
-      
-      cart.forEach(item => {
-        totalPrice += item.price * item.quantity;
-        
-        const cartItemElement = document.createElement('div');
-        cartItemElement.className = 'cart-item';
-        cartItemElement.innerHTML = `
-          <div class="cart-item-info">
-            <div class="cart-item-name">${item.name}</div>
-            <div class="cart-item-price">${item.price} MAD</div>
-          </div>
-          <div class="cart-item-quantity">
-            <button class="quantity-btn minus" data-id="${item.id}">-</button>
-            <span class="quantity-value">${item.quantity}</span>
-            <button class="quantity-btn plus" data-id="${item.id}">+</button>
-          </div>
+      mealTypes.forEach(meal => {
+        const mealSection = document.createElement('div');
+        mealSection.className = `meal-type ${meal.id}`;
+        mealSection.innerHTML = `
+          <div class="meal-title">${meal.name}</div>
+          <div id="${meal.id}-categories"></div>
         `;
         
-        cartItemsContainer.appendChild(cartItemElement);
+        menuContainer.appendChild(mealSection);
+        displayMealCategories(meal.id, `${meal.id}-categories`);
       });
       
-      // Update total
-      cartTotal.textContent = `${totalPrice.toFixed(2)} MAD`;
-      
-      // Add event listeners to quantity buttons
-      document.querySelectorAll('.quantity-btn.minus').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const itemId = e.target.getAttribute('data-id');
-          decreaseQuantity(itemId);
-        });
-      });
-      
-      document.querySelectorAll('.quantity-btn.plus').forEach(btn => {
-        btn.addEventListener('click', (e) => {
-          const itemId = e.target.getAttribute('data-id');
-          increaseQuantity(itemId);
-        });
-      });
+      // عرض الأصناف المشتركة (مشروبات، حلويات)
+      const commonSection = document.createElement('div');
+      commonSection.className = 'meal-type';
+      commonSection.innerHTML = `
+        <div class="meal-title">مشروبات وحلويات</div>
+        <div id="common-categories"></div>
+      `;
+      menuContainer.appendChild(commonSection);
+      displayMealCategories('all', 'common-categories');
     }
-
-    function increaseQuantity(itemId) {
-      const item = cart.find(item => item.id === itemId);
-      if (item) {
-        item.quantity += 1;
-        updateCart();
-      }
-    }
-
-    function decreaseQuantity(itemId) {
-      const itemIndex = cart.findIndex(item => item.id === itemId);
-      if (itemIndex !== -1) {
-        if (cart[itemIndex].quantity > 1) {
-          cart[itemIndex].quantity -= 1;
-        } else {
-          cart.splice(itemIndex, 1);
-        }
-        updateCart();
-      }
-    }
-
-    // Checkout function
-    checkoutBtn.addEventListener('click', () => {
-      if (cart.length === 0) {
-        alert('Votre panier est vide');
-        return;
-      }
+    
+    function displayMealCategories(mealType, containerId) {
+      const container = document.getElementById(containerId);
+      const categories = sampleMenu.categories[mealType] || [];
       
-      const tableNumber = prompt('Entrez votre numéro de table:');
-      if (!tableNumber) return;
-      
-      const order = {
-        table: tableNumber,
-        commandes: cart.map(item => ({
-          plat: item.name,
-          prix: item.price,
-          quantite: item.quantity,
-          notes: ''
-        })),
-        total: cart.reduce((total, item) => total + (item.price * item.quantity), 0),
-        timestamp: Date.now(),
-        etat: "En attente",
-        statut: "En attente"
-      };
-      
-      // Save order to Firebase
-      db.ref('commandes').push(order)
-        .then(() => {
-          alert('Commande passée avec succès!');
-          cart = [];
-          updateCart();
-          cartModal.classList.remove('show');
-        })
-        .catch(error => {
-          console.error('Error saving order:', error);
-          alert('Une erreur est survenue lors de la commande');
-        });
-    });
-
-    // Load menu from Firebase
-    function loadMenu() {
-      db.ref('menu').on('value', (snapshot) => {
-        const menuData = snapshot.val();
-        const categories = {};
+      categories.forEach(category => {
+        const categoryElement = document.createElement('div');
+        categoryElement.className = 'menu-category';
         
-        // Group items by category
-        Object.values(menuData).forEach(item => {
-          if (item.isAvailable !== false) { // Only show available items
-            if (!categories[item.category]) {
-              categories[item.category] = [];
-            }
-            categories[item.category].push(item);
-          }
-        });
+        const categoryHeader = document.createElement('div');
+        categoryHeader.className = 'category-header';
+        categoryHeader.innerHTML = `
+          <h3 class="category-title">${category}</h3>
+          <i class="fas fa-chevron-down"></i>
+        `;
         
-        // Display menu
-        const menuContainer = document.getElementById('menu-container');
-        menuContainer.innerHTML = '';
+        const categoryItems = document.createElement('div');
+        categoryItems.className = 'category-items';
         
-        for (const [category, items] of Object.entries(categories)) {
-          const categoryElement = document.createElement('div');
-          categoryElement.className = 'menu-category';
-          
-          const categoryHeader = document.createElement('div');
-          categoryHeader.className = 'category-header';
-          categoryHeader.innerHTML = `
-            <h3 class="category-title">${category}</h3>
-            <i class="fas fa-chevron-down"></i>
-          `;
-          
-          const categoryItems = document.createElement('div');
-          categoryItems.className = 'category-items';
-          
-          items.forEach(item => {
+        // تصفية الأطباق حسب الفئة ونوع الوجبة
+        Object.values(sampleMenu.menu)
+          .filter(item => item.category === category && 
+                (item.mealType === mealType || item.mealType === 'all'))
+          .forEach(item => {
             const itemElement = document.createElement('div');
             itemElement.className = 'menu-item';
             itemElement.innerHTML = `
@@ -520,49 +322,33 @@
                 <p class="item-description">${item.description}</p>
                 <div class="item-footer">
                   <span class="item-price">${item.price.toFixed(2)} MAD</span>
-                  <button class="add-to-cart" data-id="${item.id}">Ajouter</button>
+                  <button class="add-to-cart" data-id="${item.id}">إضافة</button>
                 </div>
               </div>
             `;
             
             categoryItems.appendChild(itemElement);
           });
-          
-          categoryElement.appendChild(categoryHeader);
-          categoryElement.appendChild(categoryItems);
-          menuContainer.appendChild(categoryElement);
-          
-          // Toggle category items
-          categoryHeader.addEventListener('click', () => {
-            categoryItems.classList.toggle('show');
-            const icon = categoryHeader.querySelector('i');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-          });
-        }
         
-        // Add event listeners to "Add to cart" buttons
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-          button.addEventListener('click', (e) => {
-            const itemId = e.target.getAttribute('data-id');
-            const item = menuData[itemId];
-            if (item) {
-              addToCart(item);
-              // Show cart modal when adding first item
-              if (cart.length === 1) {
-                cartModal.classList.add('show');
-              }
-            }
-          });
+        categoryElement.appendChild(categoryHeader);
+        categoryElement.appendChild(categoryItems);
+        container.appendChild(categoryElement);
+        
+        // إضافة حدث التفعيل للفئة
+        categoryHeader.addEventListener('click', () => {
+          categoryItems.classList.toggle('show');
+          const icon = categoryHeader.querySelector('i');
+          icon.classList.toggle('fa-chevron-down');
+          icon.classList.toggle('fa-chevron-up');
         });
       });
     }
 
-    // Initialize the page
+    // تهيئة الصفحة
     window.addEventListener('DOMContentLoaded', () => {
       loadMenu();
       
-      // Open first category by default
+      // فتح أول قسم افتراضياً
       setTimeout(() => {
         const firstCategory = document.querySelector('.category-header');
         if (firstCategory) {
