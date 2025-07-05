@@ -1,361 +1,616 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Menu - Dar Hassna</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-  <style>
-    :root {
-      --primary-color: #8B4513; /* Brown */
-      --secondary-color: #D2B48C; /* Tan */
-      --breakfast-color: #F5DEB3; /* Light breakfast color */
-      --lunch-color: #CD853F; /* Lunch color */
-      --dinner-color: #A0522D; /* Dinner color */
-      --accent-color: #A52A2A; /* Reddish */
-      --text-color: #333;
-      --light-bg: #FFF8DC;
-    }
-    
-    body {
-      font-family: 'Arial', sans-serif;
-      background-color: var(--light-bg);
-      margin: 0;
-      padding: 0;
-      color: var(--text-color);
-    }
-    
-    .header {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 20px 0;
-      text-align: center;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-    }
-    
-    .logo {
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
-    
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-    }
-    
-    .meal-type {
-      margin-bottom: 30px;
-    }
-    
-    .meal-title {
-      background-color: var(--primary-color);
-      color: white;
-      padding: 15px;
-      text-align: center;
-      font-size: 1.8rem;
-      border-radius: 5px;
-      margin-bottom: 20px;
-    }
-    
-    .breakfast .meal-title {
-      background-color: var(--breakfast-color);
-      color: var(--text-color);
-    }
-    
-    .lunch .meal-title {
-      background-color: var(--lunch-color);
-    }
-    
-    .dinner .meal-title {
-      background-color: var(--dinner-color);
-    }
-    
-    .menu-category {
-      margin-bottom: 30px;
-      background-color: white;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-    }
-    
-    .category-header {
-      background-color: var(--secondary-color);
-      color: var(--text-color);
-      padding: 15px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      cursor: pointer;
-    }
-    
-    .category-title {
-      margin: 0;
-      font-size: 1.5rem;
-    }
-    
-    .category-items {
-      display: none;
-      padding: 20px;
-    }
-    
-    .category-items.show {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-    }
-    
-    .menu-item {
-      border: 1px solid #eee;
-      border-radius: 8px;
-      overflow: hidden;
-      transition: transform 0.3s;
-    }
-    
-    .menu-item:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    .item-image {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-    }
-    
-    .item-details {
-      padding: 15px;
-    }
-    
-    .item-name {
-      font-size: 1.2rem;
-      margin: 0 0 10px 0;
-      color: var(--primary-color);
-    }
-    
-    .item-description {
-      color: #666;
-      margin-bottom: 15px;
-      font-size: 0.9rem;
-    }
-    
-    .item-footer {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    
-    .item-price {
-      font-weight: bold;
-      color: var(--accent-color);
-      font-size: 1.2rem;
-    }
-    
-    .add-to-cart {
-      background-color: var(--accent-color);
-      color: white;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    
-    .add-to-cart:hover {
-      background-color: #8B0000;
-    }
-    
-    /* بقية الأنماط كما هي ... */
-    
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DAR HASSNA - Système de Commande</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f8f8;
+        }
+        .food-item {
+            transition: all 0.3s ease;
+        }
+        .order-status-new {
+            background-color: #FEF3C7;
+            color: #92400E;
+        }
+        .order-status-preparing {
+            background-color: #BFDBFE;
+            color: #1E40AF;
+        }
+        .order-status-ready {
+            background-color: #D1FAE5;
+            color: #065F46;
+        }
+        .order-status-delivered {
+            background-color: #E5E7EB;
+            color: #4B5563;
+        }
+        .input-error {
+            border-color: #EF4444;
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        .restaurant-name {
+            cursor: pointer;
+            user-select: none;
+            font-family: 'Georgia', serif;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #5a4a42;
+        }
+        .header-container {
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            border-bottom: 2px solid #d4a762;
+            text-align: center;
+            padding: 1.5rem;
+        }
+        .date-display {
+            color: #7a6b5e;
+            font-weight: 500;
+            margin: 0.5rem 0;
+            font-size: 0.875rem;
+        }
+        .main-title {
+            font-family: 'Georgia', serif;
+            color: #5a4a42;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding-bottom: 10px;
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0;
+        }
+        .main-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 2px;
+            background-color: #d4a762;
+        }
+        .menu-title {
+            background-color: #5a4a42;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            display: inline-block;
+            margin-top: 1rem;
+            font-weight: bold;
+        }
+        .menu-section-title {
+            font-family: 'Georgia', serif;
+            color: #5a4a42;
+            border-bottom: 1px solid #d4a762;
+            padding-bottom: 5px;
+            font-size: 1.25rem;
+            font-weight: bold;
+        }
+        .add-to-order {
+            background-color: #8B4513;
+            transition: all 0.3s ease;
+        }
+        .add-to-order:hover {
+            background-color: #6B3410;
+            transform: translateY(-2px);
+        }
+        .submit-order-btn {
+            background-color: #8B4513;
+            transition: all 0.3s ease;
+        }
+        .submit-order-btn:hover {
+            background-color: #6B3410;
+            transform: translateY(-2px);
+        }
+        .food-item-card {
+            border: 1px solid #d4a762;
+        }
+    </style>
 </head>
 <body>
-  <!-- الهيكل الأساسي يبقى كما هو -->
-  
-  <script>
-    // بيانات نموذجية للأطباق مصنفة حسب الوجبات
-    const sampleMenu = {
-      "menu": {
-        "item_1": {
-          "id": "item_1",
-          "name": "بغرير بالعسل",
-          "description": "بغرير تقليدي مع عسل وعسل الزهور",
-          "price": 25,
-          "category": "فطائر",
-          "mealType": "breakfast",
-          "image": "https://example.com/bghrir.jpg",
-          "isAvailable": true
-        },
-        "item_2": {
-          "id": "item_2",
-          "name": "مسمن مع مربى",
-          "description": "مسمن طازج مع مربى منزلي",
-          "price": 20,
-          "category": "فطائر",
-          "mealType": "breakfast",
-          "isAvailable": true
-        },
-        "item_3": {
-          "id": "item_3",
-          "name": "طاجين لحم",
-          "description": "طاجين لحم بالخوخ واللوز",
-          "price": 65,
-          "category": "أطباق رئيسية",
-          "mealType": "lunch",
-          "image": "https://example.com/tajine.jpg",
-          "isAvailable": true
-        },
-        "item_4": {
-          "id": "item_4",
-          "name": "كوسكوس بالخضار",
-          "description": "كوسكوس مع سبعة خضار",
-          "price": 55,
-          "category": "أطباق رئيسية",
-          "mealType": "lunch",
-          "isAvailable": true
-        },
-        "item_5": {
-          "id": "item_5",
-          "name": "شاي بالنعناع",
-          "description": "شاي أخضر مع نعناع طازج",
-          "price": 15,
-          "category": "مشروبات",
-          "mealType": "all",
-          "isAvailable": true
-        },
-        "item_6": {
-          "id": "item_6",
-          "name": "حريرة",
-          "description": "شوربة تقليدية مغربية",
-          "price": 25,
-          "category": "شوربات",
-          "mealType": "dinner",
-          "isAvailable": true
-        },
-        "item_7": {
-          "id": "item_7",
-          "name": "بسطيلة",
-          "description": "بسطيلة بالدجاج واللوز",
-          "price": 45,
-          "category": "أطباق تقليدية",
-          "mealType": "dinner",
-          "image": "https://example.com/bastilla.jpg",
-          "isAvailable": true
-        }
-      },
-      "categories": {
-        "breakfast": ["فطائر", "عصائر"],
-        "lunch": ["أطباق رئيسية", "مقبلات"],
-        "dinner": ["شوربات", "أطباق تقليدية"],
-        "all": ["مشروبات", "حلويات"]
-      }
-    };
-
-    // دالة عرض القائمة محدثة لتصنيف الوجبات
-    function loadMenu() {
-      const menuContainer = document.getElementById('menu-container');
-      menuContainer.innerHTML = '';
-      
-      // إنشاء أقسام الوجبات
-      const mealTypes = [
-        { id: 'breakfast', name: 'الفطور' },
-        { id: 'lunch', name: 'الغداء' },
-        { id: 'dinner', name: 'العشاء' }
-      ];
-      
-      mealTypes.forEach(meal => {
-        const mealSection = document.createElement('div');
-        mealSection.className = `meal-type ${meal.id}`;
-        mealSection.innerHTML = `
-          <div class="meal-title">${meal.name}</div>
-          <div id="${meal.id}-categories"></div>
-        `;
-        
-        menuContainer.appendChild(mealSection);
-        displayMealCategories(meal.id, `${meal.id}-categories`);
-      });
-      
-      // عرض الأصناف المشتركة (مشروبات، حلويات)
-      const commonSection = document.createElement('div');
-      commonSection.className = 'meal-type';
-      commonSection.innerHTML = `
-        <div class="meal-title">مشروبات وحلويات</div>
-        <div id="common-categories"></div>
-      `;
-      menuContainer.appendChild(commonSection);
-      displayMealCategories('all', 'common-categories');
-    }
-    
-    function displayMealCategories(mealType, containerId) {
-      const container = document.getElementById(containerId);
-      const categories = sampleMenu.categories[mealType] || [];
-      
-      categories.forEach(category => {
-        const categoryElement = document.createElement('div');
-        categoryElement.className = 'menu-category';
-        
-        const categoryHeader = document.createElement('div');
-        categoryHeader.className = 'category-header';
-        categoryHeader.innerHTML = `
-          <h3 class="category-title">${category}</h3>
-          <i class="fas fa-chevron-down"></i>
-        `;
-        
-        const categoryItems = document.createElement('div');
-        categoryItems.className = 'category-items';
-        
-        // تصفية الأطباق حسب الفئة ونوع الوجبة
-        Object.values(sampleMenu.menu)
-          .filter(item => item.category === category && 
-                (item.mealType === mealType || item.mealType === 'all'))
-          .forEach(item => {
-            const itemElement = document.createElement('div');
-            itemElement.className = 'menu-item';
-            itemElement.innerHTML = `
-              ${item.image ? `<img src="${item.image}" alt="${item.name}" class="item-image">` : 
-                `<div style="height:200px;background:#eee;display:flex;align-items:center;justify-content:center;">
-                  <i class="fas fa-utensils" style="font-size:3rem;color:#ccc;"></i>
-                </div>`}
-              <div class="item-details">
-                <h4 class="item-name">${item.name}</h4>
-                <p class="item-description">${item.description}</p>
-                <div class="item-footer">
-                  <span class="item-price">${item.price.toFixed(2)} MAD</span>
-                  <button class="add-to-cart" data-id="${item.id}">إضافة</button>
+    <div id="app" class="min-h-screen">
+        <!-- Customer View -->
+        <div id="customer-view">
+            <header class="header-container shadow-md">
+                <h1 class="main-title">DAR HASSNA</h1>
+                <div class="date-display">
+                    <script>
+                        const months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+                        const today = new Date();
+                        document.write(today.getDate() + " " + months[today.getMonth()] + ", " + today.getFullYear());
+                    </script>
                 </div>
-              </div>
-            `;
-            
-            categoryItems.appendChild(itemElement);
-          });
-        
-        categoryElement.appendChild(categoryHeader);
-        categoryElement.appendChild(categoryItems);
-        container.appendChild(categoryElement);
-        
-        // إضافة حدث التفعيل للفئة
-        categoryHeader.addEventListener('click', () => {
-          categoryItems.classList.toggle('show');
-          const icon = categoryHeader.querySelector('i');
-          icon.classList.toggle('fa-chevron-down');
-          icon.classList.toggle('fa-chevron-up');
-        });
-      });
-    }
+                <div class="menu-title">
+                    لائحة الطعام اليومية
+                </div>
+            </header>
 
-    // تهيئة الصفحة
-    window.addEventListener('DOMContentLoaded', () => {
-      loadMenu();
-      
-      // فتح أول قسم افتراضياً
-      setTimeout(() => {
-        const firstCategory = document.querySelector('.category-header');
-        if (firstCategory) {
-          firstCategory.click();
+            <main class="container mx-auto p-4 mt-6">
+                <!-- Menu Sections -->
+                <div id="menu-container">
+                    <!-- Menu items loaded dynamically -->
+                </div>
+
+                <!-- Order Summary -->
+                <div class="mt-8 bg-white p-4 rounded-lg shadow food-item-card">
+                    <h3 class="text-lg font-bold mb-2 text-[#5a4a42]">Votre Commande</h3>
+                    <div id="order-items" class="mb-3">
+                        <p class="text-gray-500">Votre panier est vide</p>
+                    </div>
+                    <div class="flex justify-between border-t border-[#d4a762] pt-2">
+                        <span class="font-bold text-[#5a4a42]">Total:</span>
+                        <span id="order-total" class="font-bold">0 DH</span>
+                    </div>
+                    <button id="submit-order" class="submit-order-btn w-full mt-4 text-white py-2 rounded hover:bg-[#6B3410]">
+                        Commander
+                    </button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Admin Dashboard (Hidden by default) -->
+        <div id="admin-dashboard" class="hidden">
+            <header class="bg-white shadow-md p-4 flex justify-between items-center">
+                <h1 class="text-xl font-bold text-[#5a4a42]">Tableau de Bord</h1>
+                <button id="logout-btn" class="bg-red-500 text-white px-3 py-1 rounded">
+                    Déconnexion
+                </button>
+            </header>
+
+            <div class="container mx-auto p-4">
+                <!-- Orders Section -->
+                <div class="mb-8">
+                    <h2 class="text-lg font-bold mb-4 text-[#5a4a42]">Commandes en Cours</h2>
+                    <div id="orders-list" class="space-y-3">
+                        <!-- Orders loaded dynamically -->
+                    </div>
+                </div>
+
+                <!-- Menu Management -->
+                <div>
+                    <h2 class="text-lg font-bold mb-4 text-[#5a4a42]">Gestion du Menu</h2>
+                    <div id="menu-editor">
+                        <!-- Menu editor loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Table Number Modal -->
+        <div id="table-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+            <div class="bg-white p-6 rounded-lg w-80 food-item-card">
+                <h3 class="text-lg font-bold mb-4 text-[#5a4a42]">Numéro de Table</h3>
+                <input type="number" id="table-number" class="w-full p-2 border border-[#d4a762] rounded mb-2" placeholder="Entrez le numéro de table" min="1">
+                <p id="table-error" class="text-red-500 text-sm mb-3 hidden">Veuillez entrer un numéro de table valide</p>
+                <div class="flex justify-end space-x-2">
+                    <button id="cancel-order" class="px-4 py-2 bg-gray-200 rounded">Annuler</button>
+                    <button id="confirm-order" class="px-4 py-2 bg-[#5a4a42] text-white rounded">Confirmer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Data Storage
+        let menuData = {
+            breakfast: [
+                { id: 1, name: "Msemen", price: 15, category: "breakfast" },
+                { id: 2, name: "Beghrir", price: 12, category: "breakfast" }
+            ],
+            lunch: [
+                { id: 3, name: "Tajine de Poulet", price: 45, category: "lunch" },
+                { id: 4, name: "Couscous", price: 40, category: "lunch" }
+            ],
+            dinner: [
+                { id: 5, name: "Harira", price: 25, category: "dinner" },
+                { id: 6, name: "Briouates", price: 30, category: "dinner" }
+            ]
+        };
+
+        let orders = [];
+        let currentOrder = [];
+        
+        // Variables for triple click detection
+        let clickCount = 0;
+        let lastClickTime = 0;
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', () => {
+            loadMenu();
+            setupEventListeners();
+            
+            // Add click event listener to restaurant name
+            document.querySelector('.main-title').addEventListener('click', handleRestaurantNameClick);
+        });
+
+        // Handle triple click on restaurant name
+        function handleRestaurantNameClick() {
+            const currentTime = new Date().getTime();
+            
+            if (currentTime - lastClickTime < 500) { // 500ms between clicks
+                clickCount++;
+                
+                if (clickCount === 3) {
+                    checkAdminAccess();
+                    clickCount = 0;
+                }
+            } else {
+                clickCount = 1;
+            }
+            
+            lastClickTime = currentTime;
         }
-      }, 500);
-    });
-  </script>
+
+        // Load menu for customers
+        function loadMenu() {
+            const container = document.getElementById('menu-container');
+            container.innerHTML = '';
+
+            // Create sections for each category
+            const categories = [
+                { id: 'breakfast', name: 'Petit-déjeuner' },
+                { id: 'lunch', name: 'Déjeuner' },
+                { id: 'dinner', name: 'Dîner' }
+            ];
+
+            categories.forEach(category => {
+                const section = document.createElement('div');
+                section.className = 'mb-8';
+                section.innerHTML = `
+                    <h2 class="menu-section-title text-xl font-bold mb-4 pb-2">${category.name}</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4" id="${category.id}-items">
+                        ${menuData[category.id].map(item => `
+                            <div class="food-item bg-white p-4 rounded shadow food-item-card">
+                                <h3 class="font-bold text-[#5a4a42]">${item.name}</h3>
+                                <div class="flex justify-between items-center mt-2">
+                                    <span class="text-[#8B4513] font-bold">${item.price} DH</span>
+                                    <button class="add-to-order px-3 py-1 text-white rounded" 
+                                            data-id="${item.id}" data-name="${item.name}" data-price="${item.price}">
+                                        Ajouter
+                                    </button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+                container.appendChild(section);
+            });
+        }
+
+        // باقي الدوال والوظائف تبقى كما هي بدون تغيير
+        // ... (يتبع نفس الدوال الموجودة في الكود السابق)
+
+        // Load admin dashboard
+        function loadAdminDashboard() {
+            loadOrdersForAdmin();
+            loadMenuEditor();
+        }
+
+        // Load orders for admin view
+        function loadOrdersForAdmin() {
+            const container = document.getElementById('orders-list');
+            
+            if (orders.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">Aucune commande pour le moment</p>';
+                return;
+            }
+
+            container.innerHTML = orders.map(order => `
+                <div class="order bg-white p-4 rounded shadow food-item-card" data-id="${order.id}">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h3 class="font-bold text-[#5a4a42]">Commande #${order.id}</h3>
+                            <p class="text-sm">Table: ${order.tableNumber}</p>
+                            <p class="text-sm">${new Date(order.time).toLocaleTimeString()}</p>
+                        </div>
+                        <span class="status-badge px-2 py-1 rounded text-xs ${getStatusClass(order.status)}">
+                            ${getStatusText(order.status)}
+                        </span>
+                    </div>
+                    <div class="mt-2">
+                        ${order.items.map(item => `
+                            <div class="flex justify-between text-sm py-1 border-b border-[#d4a762]">
+                                <span>${item.quantity}x ${item.name}</span>
+                                <span>${item.price * item.quantity} DH</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div class="flex justify-between items-center mt-2 pt-2 border-t border-[#d4a762]">
+                        <span class="font-bold text-[#5a4a42]">Total: ${order.total} DH</span>
+                        <select class="order-status text-xs p-1 border border-[#d4a762] rounded" data-order-id="${order.id}">
+                            <option value="new" ${order.status === 'new' ? 'selected' : ''}>Nouvelle</option>
+                            <option value="preparing" ${order.status === 'preparing' ? 'selected' : ''}>En préparation</option>
+                            <option value="ready" ${order.status === 'ready' ? 'selected' : ''}>Prête</option>
+                            <option value="delivered" ${order.status === 'delivered' ? 'selected' : ''}>Livrée</option>
+                        </select>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Load menu editor for admin
+        function loadMenuEditor() {
+            const container = document.getElementById('menu-editor');
+            
+            container.innerHTML = Object.entries(menuData).map(([category, items]) => `
+                <div class="mb-6">
+                    <h3 class="font-bold mb-2 text-[#5a4a42]">${getCategoryName(category)}</h3>
+                    <div class="space-y-3" id="${category}-editor">
+                        ${items.map(item => `
+                            <div class="menu-item bg-white p-3 rounded shadow food-item-card flex justify-between items-center">
+                                <div class="flex-1 mr-4">
+                                    <input type="text" value="${item.name}" 
+                                           class="item-name w-full p-1 border border-[#d4a762] rounded" 
+                                           data-id="${item.id}" data-category="${category}">
+                                </div>
+                                <div class="w-20">
+                                    <input type="number" value="${item.price}" 
+                                           class="item-price w-full p-1 border border-[#d4a762] rounded" 
+                                           data-id="${item.id}" data-category="${category}">
+                                </div>
+                                <button class="delete-item ml-2 px-2 py-1 bg-red-500 text-white rounded text-sm">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <button class="add-item mt-2 px-3 py-1 bg-gray-200 rounded text-sm" data-category="${category}">
+                        <i class="fas fa-plus mr-1"></i> Ajouter un plat
+                    </button>
+                </div>
+            `).join('');
+
+            // Add "Save Menu" button
+            container.insertAdjacentHTML('beforeend', `
+                <button id="save-menu" class="mt-4 px-4 py-2 bg-[#5a4a42] text-white rounded hover:bg-[#3a2a22]">
+                    Enregistrer le Menu
+                </button>
+            `);
+        }
+
+        // Helper functions
+        function getCategoryName(category) {
+            const names = {
+                breakfast: "Petit-déjeuner",
+                lunch: "Déjeuner",
+                dinner: "Dîner"
+            };
+            return names[category];
+        }
+
+        function getStatusText(status) {
+            const statusMap = {
+                new: "Nouvelle",
+                preparing: "En préparation",
+                ready: "Prête",
+                delivered: "Livrée"
+            };
+            return statusMap[status] || status;
+        }
+
+        function getStatusClass(status) {
+            const classMap = {
+                new: "order-status-new",
+                preparing: "order-status-preparing",
+                ready: "order-status-ready",
+                delivered: "order-status-delivered"
+            };
+            return classMap[status] || "";
+        }
+
+        // Update order summary
+        function updateOrderSummary() {
+            const container = document.getElementById('order-items');
+            const totalElement = document.getElementById('order-total');
+            
+            if (currentOrder.length === 0) {
+                container.innerHTML = '<p class="text-gray-500">Votre panier est vide</p>';
+                totalElement.textContent = "0 DH";
+                return;
+            }
+
+            container.innerHTML = currentOrder.map(item => `
+                <div class="flex justify-between py-1 border-b border-[#d4a762]">
+                    <span class="text-[#5a4a42]">${item.quantity}x ${item.name}</span>
+                    <span class="text-[#8B4513] font-bold">${item.price * item.quantity} DH</span>
+                </div>
+            `).join('');
+
+            const total = currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            totalElement.textContent = `${total} DH`;
+        }
+
+        // Admin access control
+        function checkAdminAccess() {
+            const adminPassword = "1234";
+            let loginAttempts = 0;
+            
+            const password = prompt("Entrez le mot de passe admin:");
+            if (password === adminPassword) {
+                document.getElementById('customer-view').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                loadAdminDashboard();
+            } else {
+                loginAttempts++;
+                alert("Mot de passe incorrect. Tentatives restantes: " + (3 - loginAttempts));
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Add to order button
+            document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('add-to-order') || e.target.closest('.add-to-order')) {
+                    const button = e.target.classList.contains('add-to-order') ? e.target : e.target.closest('.add-to-order');
+                    const id = button.dataset.id;
+                    const name = button.dataset.name;
+                    const price = parseFloat(button.dataset.price);
+                    
+                    // Check if item already in order
+                    const existingItem = currentOrder.find(item => item.id === id);
+                    if (existingItem) {
+                        existingItem.quantity += 1;
+                    } else {
+                        currentOrder.push({ id, name, price, quantity: 1 });
+                    }
+                    
+                    updateOrderSummary();
+                }
+            });
+
+            // Submit order
+            document.getElementById('submit-order').addEventListener('click', () => {
+                if (currentOrder.length === 0) {
+                    alert("Votre panier est vide!");
+                    return;
+                }
+                document.getElementById('table-modal').classList.remove('hidden');
+            });
+
+            // Confirm order
+            document.getElementById('confirm-order').addEventListener('click', () => {
+                const tableNumber = document.getElementById('table-number').value.trim();
+                const errorElement = document.getElementById('table-error');
+                
+                if (!tableNumber || isNaN(tableNumber) || parseInt(tableNumber) <= 0) {
+                    errorElement.classList.remove('hidden');
+                    document.getElementById('table-number').classList.add('input-error');
+                    setTimeout(() => {
+                        document.getElementById('table-number').classList.remove('input-error');
+                    }, 500);
+                    return;
+                }
+                
+                errorElement.classList.add('hidden');
+                
+                // Create new order
+                const newOrder = {
+                    id: orders.length > 0 ? Math.max(...orders.map(o => o.id)) + 1 : 1,
+                    tableNumber: parseInt(tableNumber),
+                    items: [...currentOrder],
+                    total: currentOrder.reduce((sum, item) => sum + (item.price * item.quantity), 0),
+                    status: "new",
+                    time: new Date()
+                };
+                
+                orders.unshift(newOrder);
+                currentOrder = [];
+                updateOrderSummary();
+                
+                // Close modal and reset
+                document.getElementById('table-modal').classList.add('hidden');
+                document.getElementById('table-number').value = '';
+                
+                // If in admin view, reload orders
+                if (!document.getElementById('admin-dashboard').classList.contains('hidden')) {
+                    loadOrdersForAdmin();
+                }
+            });
+
+            // Cancel order
+            document.getElementById('cancel-order').addEventListener('click', () => {
+                document.getElementById('table-modal').classList.add('hidden');
+                document.getElementById('table-number').value = '';
+                document.getElementById('table-error').classList.add('hidden');
+            });
+
+            // Logout
+            document.getElementById('logout-btn').addEventListener('click', () => {
+                document.getElementById('admin-dashboard').classList.add('hidden');
+                document.getElementById('customer-view').classList.remove('hidden');
+            });
+
+            // Order status change
+            document.addEventListener('change', (e) => {
+                if (e.target.classList.contains('order-status')) {
+                    const orderId = parseInt(e.target.dataset.orderId);
+                    const newStatus = e.target.value;
+                    
+                    const order = orders.find(o => o.id === orderId);
+                    if (order) {
+                        order.status = newStatus;
+                    }
+                }
+            });
+
+            // Menu editor events
+            document.addEventListener('click', (e) => {
+                // Add new menu item
+                if (e.target.classList.contains('add-item') || e.target.closest('.add-item')) {
+                    const button = e.target.classList.contains('add-item') ? e.target : e.target.closest('.add-item');
+                    const category = button.dataset.category;
+                    
+                    const newId = menuData[category].length > 0 ? 
+                        Math.max(...menuData[category].map(i => i.id)) + 1 : 1;
+                    
+                    const newItem = {
+                        id: newId,
+                        name: "Nouveau plat",
+                        price: 0,
+                        category: category
+                    };
+                    
+                    menuData[category].push(newItem);
+                    loadMenuEditor();
+                }
+                
+                // Delete menu item
+                if (e.target.classList.contains('delete-item') || e.target.closest('.delete-item')) {
+                    const button = e.target.classList.contains('delete-item') ? e.target : e.target.closest('.delete-item');
+                    const itemElement = button.closest('.menu-item');
+                    const id = parseInt(itemElement.querySelector('.item-name').dataset.id);
+                    const category = itemElement.querySelector('.item-name').dataset.category;
+                    
+                    menuData[category] = menuData[category].filter(item => item.id !== id);
+                    loadMenuEditor();
+                    loadMenu(); // Update customer view
+                }
+            });
+
+            // Save menu changes automatically on input
+            let saveTimeout;
+            document.addEventListener('input', (e) => {
+                if (e.target.classList.contains('item-name') || e.target.classList.contains('item-price')) {
+                    const input = e.target;
+                    const id = parseInt(input.dataset.id);
+                    const category = input.dataset.category;
+                    const item = menuData[category].find(i => i.id === id);
+                    
+                    if (item) {
+                        if (input.classList.contains('item-name')) {
+                            item.name = input.value;
+                        } else {
+                            item.price = parseFloat(input.value) || 0;
+                        }
+                        
+                        // Debounce save to prevent too many updates
+                        clearTimeout(saveTimeout);
+                        saveTimeout = setTimeout(() => {
+                            loadMenu(); // Update customer view
+                        }, 1000);
+                    }
+                }
+            });
+
+            // Save menu button
+            document.addEventListener('click', (e) => {
+                if (e.target.id === 'save-menu') {
+                    alert("Menu enregistré avec succès!");
+                    loadMenu(); // Update customer view
+                }
+            });
+        }
+    </script>
 </body>
 </html>
