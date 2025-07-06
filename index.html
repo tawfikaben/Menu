@@ -150,7 +150,7 @@
       font-size: 1.2rem;
     }
     
-    input, select {
+    input, select, textarea {
       width: 100%;
       padding: 12px;
       border: 1px solid #ddd;
@@ -475,13 +475,8 @@
       <label for="table">رقم الطاولة:</label>
       <input type="number" id="table" min="1" required>
       
-      <label for="meal-time">وقت الوجبة:</label>
-      <select id="meal-time" required>
-        <option value="">-- اختر وقت الوجبة --</option>
-        <option value="breakfast">فطور</option>
-        <option value="lunch">غداء</option>
-        <option value="dinner">عشاء</option>
-      </select>
+      <label for="notes">ملاحظة:</label>
+      <input type="text" id="notes" placeholder="أي ملاحظات إضافية حول الطلب">
       
       <div id="listeCommandes"></div>
       
@@ -611,17 +606,17 @@
       e.preventDefault();
       
       const table = document.getElementById('table').value;
-      const mealTime = document.getElementById('meal-time').value;
+      const notes = document.getElementById('notes').value;
       
-      if (!table || !mealTime || commandes.length === 0) {
-        alert('الرجاء تحديد رقم الطاولة ووقت الوجبة وإضافة طلب واحد على الأقل');
+      if (!table || commandes.length === 0) {
+        alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
         return;
       }
       
       // إرسال البيانات إلى Firebase
       database.ref('commandes').push({
         table: table,
-        mealTime: mealTime,
+        notes: notes,
         commandes: commandes,
         total: total,
         timestamp: firebase.database.ServerValue.TIMESTAMP,
@@ -630,30 +625,21 @@
       
       // عرض رسالة التأكيد
       const confirmation = document.getElementById('confirmation');
-      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table} (${getMealTimeName(mealTime)})! المجموع: ${total} درهم`;
+      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم` + 
+                               (notes ? `\nملاحظة: ${notes}` : '');
       confirmation.style.display = 'block';
       
       // إعادة تعيين النموذج
       commandes = [];
       afficherCommandes();
       document.getElementById('table').value = '';
-      document.getElementById('meal-time').value = '';
+      document.getElementById('notes').value = '';
       
       // إخفاء رسالة التأكيد بعد 5 ثواني
       setTimeout(() => {
         confirmation.style.display = 'none';
       }, 5000);
     });
-    
-    // تحويل قيمة وقت الوجبة إلى اسم
-    function getMealTimeName(value) {
-      switch(value) {
-        case 'breakfast': return 'فطور';
-        case 'lunch': return 'غداء';
-        case 'dinner': return 'عشاء';
-        default: return '';
-      }
-    }
   </script>
 </body>
 </html>
