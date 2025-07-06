@@ -301,6 +301,14 @@
         text-align: right;
       }
     }
+    
+    /* أنماط إضافية للتحميل */
+    .loading {
+      text-align: center;
+      padding: 20px;
+      font-size: 1.2rem;
+      color: var(--color-text);
+    }
   </style>
 </head>
 <body>
@@ -312,160 +320,9 @@
     
     <h2>قائمتنا الشهية</h2>
     
-    <!-- قسم الفطور -->
-    <div class="menu-section">
-      <h3>وجبة الفطور</h3>
-      
-      <div class="menu-item" data-plat="بغرير بالعسل والزبدة" data-prix="25">
-        <div>
-          <div class="item-name">بغرير بالعسل والزبدة</div>
-          <div class="item-desc">فطائر مخمرة رقيقة تقدم مع العسل والزبدة</div>
-        </div>
-        <div class="item-price">25 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="مسمن مع العسل" data-prix="30">
-        <div>
-          <div class="item-name">مسمن مع العسل</div>
-          <div class="item-desc">خبز مسمن محلي مع العسل الطازج</div>
-        </div>
-        <div class="item-price">30 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="حلبة بالبيض" data-prix="35">
-        <div>
-          <div class="item-name">حلبة بالبيض</div>
-          <div class="item-desc">حلبة مطبوخة مع البيض والتوابل</div>
-        </div>
-        <div class="item-price">35 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="شاي بالنعناع مع خبز الزيت" data-prix="40">
-        <div>
-          <div class="item-name">شاي بالنعناع مع خبز الزيت</div>
-          <div class="item-desc">شاي مغربي تقليدي مع خبز الزيت المنزلي</div>
-        </div>
-        <div class="item-price">40 درهم</div>
-      </div>
-    </div>
-    
-    <!-- قسم الغداء -->
-    <div class="menu-section">
-      <h3>وجبة الغداء</h3>
-      
-      <div class="menu-item" data-plat="الكسكس بالخضار واللحم" data-prix="85">
-        <div>
-          <div class="item-name">الكسكس بالخضار واللحم</div>
-          <div class="item-desc">سميد مع الخضار الموسمية واللحم الطري مع مرق خاص</div>
-        </div>
-        <div class="item-price">85 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="الطاجين بالزيتون والليمون" data-prix="75">
-        <div>
-          <div class="item-name">الطاجين بالزيتون والليمون</div>
-          <div class="item-desc">دجاج مطهو بزيت الزيتون مع الزيتون والليمون المحفوظ</div>
-        </div>
-        <div class="item-price">75 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="البسطيلة المغربية" data-prix="90">
-        <div>
-          <div class="item-name">البسطيلة المغربية</div>
-          <div class="item-desc">ورق البسطيلة المحشو بلحم الحمام واللوز والتوابل</div>
-        </div>
-        <div class="item-price">90 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="المشوي" data-prix="120">
-        <div>
-          <div class="item-name">المشوي</div>
-          <div class="item-desc">لحم ضأن مشوي على الفحم بطريقة تقليدية</div>
-        </div>
-        <div class="item-price">120 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="الحريرة المغربية" data-prix="35">
-        <div>
-          <div class="item-name">الحريرة المغربية</div>
-          <div class="item-desc">شوربة العدس بالحمص واللحم والتوابل</div>
-        </div>
-        <div class="item-price">35 درهم</div>
-      </div>
-    </div>
-    
-    <!-- قسم العشاء -->
-    <div class="menu-section">
-      <h3>وجبة العشاء</h3>
-      
-      <div class="menu-item" data-plat="الطاجين بالخضار" data-prix="65">
-        <div>
-          <div class="item-name">الطاجين بالخضار</div>
-          <div class="item-desc">طاجين نباتي مع خضار الموسم</div>
-        </div>
-        <div class="item-price">65 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="الرغايف مع المرق" data-prix="45">
-        <div>
-          <div class="item-name">الرغايف مع المرق</div>
-          <div class="item-desc">خبز رغايف تقليدي مع مرق الخضار</div>
-        </div>
-        <div class="item-price">45 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="سلطة زعلوك" data-prix="40">
-        <div>
-          <div class="item-name">سلطة زعلوك</div>
-          <div class="item-desc">سلطة الباذنجان المشوي مع الثوم والتوابل</div>
-        </div>
-        <div class="item-price">40 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="البريوات بالدجاج" data-prix="50">
-        <div>
-          <div class="item-name">البريوات بالدجاج</div>
-          <div class="item-desc">ورق البريوات المحشو بالدجاج والتوابل</div>
-        </div>
-        <div class="item-price">50 درهم</div>
-      </div>
-    </div>
-    
-    <!-- قسم الحلويات والمشروبات -->
-    <div class="menu-section">
-      <h3>الحلويات والمشروبات</h3>
-      
-      <div class="menu-item" data-plat="البقلاوة" data-prix="30">
-        <div>
-          <div class="item-name">البقلاوة</div>
-          <div class="item-desc">حلوة مكونة من طبقات عجين محشوة باللوز والعسل</div>
-        </div>
-        <div class="item-price">30 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="المحنشة" data-prix="35">
-        <div>
-          <div class="item-name">المحنشة</div>
-          <div class="item-desc">حلوة على شكل ثعبان محشوة بمعجون اللوز</div>
-        </div>
-        <div class="item-price">35 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="الشاي المغربي" data-prix="20">
-        <div>
-          <div class="item-name">الشاي المغربي</div>
-          <div class="item-desc">شاي أخضر مع النعناع الطازج والسكر</div>
-        </div>
-        <div class="item-price">20 درهم</div>
-      </div>
-      
-      <div class="menu-item" data-plat="عصير الأفوكادو" data-prix="25">
-        <div>
-          <div class="item-name">عصير الأفوكادو</div>
-          <div class="item-desc">عصير الأفوكادو الطازج مع الحليب والسكر</div>
-        </div>
-        <div class="item-price">25 درهم</div>
-      </div>
+    <!-- سيتم تعبئة القائمة ديناميكياً هنا -->
+    <div id="menuContainer">
+      <div class="loading">جاري تحميل القائمة...</div>
     </div>
     
     <div class="moroccan-decoration">❁ ✻ ❁ ✻ ❁</div>
@@ -511,44 +368,52 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // دالة لإرسال قائمة الطعام إلى Firebase
-    function envoyerMenuAFirebase() {
-      const menuSections = document.querySelectorAll('.menu-section');
-      const menuData = [];
-      
-      menuSections.forEach(section => {
-        const sectionTitle = section.querySelector('h3').textContent;
-        const items = [];
-        
-        section.querySelectorAll('.menu-item').forEach(item => {
-          items.push({
-            plat: item.getAttribute('data-plat'),
-            prix: parseInt(item.getAttribute('data-prix')),
-            description: item.querySelector('.item-desc').textContent
-          });
-        });
-        
-        menuData.push({
-          section: sectionTitle,
-          items: items
-        });
-      });
-      
-      database.ref('menu').set(menuData)
-        .then(() => console.log('تم رفع القائمة بنجاح إلى Firebase'))
-        .catch(error => console.error('حدث خطأ في رفع القائمة:', error));
-    }
-
     // متغيرات لتخزين الطلبات
     let commandes = [];
     let total = 0;
 
-    // عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function() {
-      // إرسال القائمة إلى Firebase
-      envoyerMenuAFirebase();
-      
-      // اختيار الطبق بالضغط عليه وإضافته مباشرة
+    // دالة لتحميل وعرض القائمة من Firebase
+    function loadAndDisplayMenu() {
+      database.ref('menu').on('value', (snapshot) => {
+        const menuData = snapshot.val();
+        const menuContainer = document.getElementById('menuContainer');
+        
+        if (menuData && menuData.length > 0) {
+          menuContainer.innerHTML = '';
+          
+          menuData.forEach(section => {
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'menu-section';
+            sectionDiv.innerHTML = `<h3>${section.section}</h3>`;
+            
+            section.items.forEach(item => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'menu-item';
+              itemDiv.setAttribute('data-plat', item.plat);
+              itemDiv.setAttribute('data-prix', item.prix);
+              itemDiv.innerHTML = `
+                <div>
+                  <div class="item-name">${item.plat}</div>
+                  <div class="item-desc">${item.description}</div>
+                </div>
+                <div class="item-price">${item.prix} درهم</div>
+              `;
+              sectionDiv.appendChild(itemDiv);
+            });
+            
+            menuContainer.appendChild(sectionDiv);
+          });
+          
+          // إعادة ربط أحداث النقر على العناصر
+          attachMenuItemsEvents();
+        } else {
+          menuContainer.innerHTML = '<div class="loading">لا توجد عناصر في القائمة حالياً</div>';
+        }
+      });
+    }
+
+    // دالة لربط أحداث النقر على عناصر القائمة
+    function attachMenuItemsEvents() {
       document.querySelectorAll('.menu-item').forEach(item => {
         item.addEventListener('click', function() {
           // إزالة التحديد من جميع الأطباق
@@ -579,47 +444,7 @@
           }, 300);
         });
       });
-
-      // معالجة إرسال النموذج
-      document.getElementById('commandeForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const table = document.getElementById('table').value;
-        const notes = document.getElementById('notes').value;
-        
-        if (!table || commandes.length === 0) {
-          alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
-          return;
-        }
-        
-        // إرسال البيانات إلى Firebase
-        database.ref('commandes').push({
-          table: table,
-          notes: notes,
-          commandes: commandes,
-          total: total,
-          timestamp: firebase.database.ServerValue.TIMESTAMP,
-          statut: 'في الانتظار'
-        });
-        
-        // عرض رسالة التأكيد
-        const confirmation = document.getElementById('confirmation');
-        confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم` + 
-                                 (notes ? `\nملاحظة: ${notes}` : '');
-        confirmation.style.display = 'block';
-        
-        // إعادة تعيين النموذج
-        commandes = [];
-        afficherCommandes();
-        document.getElementById('table').value = '';
-        document.getElementById('notes').value = '';
-        
-        // إخفاء رسالة التأكيد بعد 5 ثواني
-        setTimeout(() => {
-          confirmation.style.display = 'none';
-        }, 5000);
-      });
-    });
+    }
 
     // عرض قائمة الطلبات
     function afficherCommandes() {
@@ -675,6 +500,52 @@
         });
       });
     }
+
+    // عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      // تحميل وعرض القائمة من Firebase
+      loadAndDisplayMenu();
+      
+      // معالجة إرسال النموذج
+      document.getElementById('commandeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const table = document.getElementById('table').value;
+        const notes = document.getElementById('notes').value;
+        
+        if (!table || commandes.length === 0) {
+          alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
+          return;
+        }
+        
+        // إرسال البيانات إلى Firebase
+        database.ref('commandes').push({
+          table: table,
+          notes: notes,
+          commandes: commandes,
+          total: total,
+          timestamp: firebase.database.ServerValue.TIMESTAMP,
+          statut: 'في الانتظار'
+        });
+        
+        // عرض رسالة التأكيد
+        const confirmation = document.getElementById('confirmation');
+        confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم` + 
+                                 (notes ? `\nملاحظة: ${notes}` : '');
+        confirmation.style.display = 'block';
+        
+        // إعادة تعيين النموذج
+        commandes = [];
+        afficherCommandes();
+        document.getElementById('table').value = '';
+        document.getElementById('notes').value = '';
+        
+        // إخفاء رسالة التأكيد بعد 5 ثواني
+        setTimeout(() => {
+          confirmation.style.display = 'none';
+        }, 5000);
+      });
+    });
   </script>
 </body>
 </html>
