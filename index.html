@@ -1,33 +1,26 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>DAR HASNA | مطعم مغربي معاصر</title>
+  <title>دار حسنا | مطعم مغربي</title>
   <!-- خطوط Google -->
-  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@400;500;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
-  <!-- أيقونات Line Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/line-awesome/1.3.0/line-awesome/css/line-awesome.min.css">
-  <!-- تأثيرات AOS -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- أيقونات Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #E94560; /* زهري غامق عصري */
+      --primary: #E94560; /* زهري غامق */
       --secondary: #0F3460; /* أزرق داكن */
-      --accent: #533483; /* بنفسجي غامق */
-      --light: #F8F5F2; /* كريمي فاتح */
+      --light: #F8F5F2; /* كريمي */
       --dark: #16213E; /* أزرق ليلي */
-      --gold: #FFD32D; /* ذهبي لامع */
+      --gold: #FFD32D; /* ذهبي */
       --text: #2D3748;
       --white: #FFFFFF;
       --gray: #EDF2F7;
-      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.12);
-      --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.1);
-      --shadow-lg: 0 10px 25px rgba(0, 0, 0, 0.1);
-      --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.1);
+      --shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      --transition: all 0.3s ease;
       --radius: 12px;
-      --radius-lg: 20px;
     }
 
     * {
@@ -37,30 +30,58 @@
     }
 
     body {
-      font-family: 'El Messiri', sans-serif;
+      font-family: 'Tajawal', sans-serif;
       background-color: var(--light);
       color: var(--text);
-      line-height: 1.7;
-      overflow-x: hidden;
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 0 2rem;
+      width: 100%;
+      max-width: 100%;
+      padding: 0 1rem;
     }
 
-    /* الهيدر المعدل */
+    /* شريط التنقل للجوال */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.8rem 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .nav-item i {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    /* الهيدر المعدل للجوال */
     .hero {
-      height: 90vh;
-      min-height: 700px;
-      background: linear-gradient(135deg, var(--dark), var(--accent));
+      padding: 5rem 0 3rem;
+      background: linear-gradient(135deg, var(--dark), var(--secondary));
       color: var(--white);
+      text-align: center;
       position: relative;
       overflow: hidden;
-      display: flex;
-      align-items: center;
-      clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
     }
 
     .hero::before {
@@ -71,69 +92,65 @@
       bottom: 0;
       left: 0;
       background: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
-      opacity: 0.15;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      width: 100%;
-      padding: 4rem 0;
+      opacity: 0.2;
     }
 
     .logo {
-      font-size: 4.5rem;
+      font-size: 2.2rem;
       font-weight: 700;
-      margin-bottom: 1.5rem;
-      line-height: 1.2;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      margin-bottom: 0.5rem;
+      position: relative;
+      display: inline-block;
+    }
+
+    .logo::after {
+      content: "";
+      position: absolute;
+      bottom: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: var(--gold);
     }
 
     .subtitle {
-      font-size: 1.5rem;
+      font-size: 1rem;
       opacity: 0.9;
-      margin-bottom: 2rem;
-      font-weight: 300;
-      max-width: 600px;
+      margin-bottom: 1.5rem;
+      padding: 0 1rem;
     }
 
     .date-badge {
       display: inline-flex;
       align-items: center;
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(10px);
+      background: rgba(255, 255, 255, 0.2);
       color: var(--white);
-      padding: 0.8rem 2rem;
+      padding: 0.5rem 1.2rem;
       border-radius: 50px;
-      font-weight: 500;
-      box-shadow: var(--shadow-sm);
-      margin-top: 2rem;
-      border: 1px solid rgba(255, 255, 255, 0.2);
+      font-size: 0.9rem;
     }
 
     .date-badge i {
-      margin-left: 0.8rem;
-      font-size: 1.2rem;
+      margin-left: 0.5rem;
     }
 
-    /* قسم القائمة المعدل */
+    /* قسم القائمة للجوال */
     .menu-section {
-      padding: 8rem 0 6rem;
-      position: relative;
+      padding: 2rem 0;
     }
 
     .section-title {
       text-align: center;
-      margin-bottom: 5rem;
-      position: relative;
+      margin-bottom: 1.5rem;
     }
 
     .section-title h2 {
-      font-size: 3rem;
+      font-size: 1.8rem;
       color: var(--dark);
       display: inline-block;
       position: relative;
-      padding-bottom: 1.5rem;
+      padding-bottom: 0.8rem;
     }
 
     .section-title h2::after {
@@ -142,238 +159,202 @@
       bottom: 0;
       right: 50%;
       transform: translateX(50%);
-      width: 100px;
-      height: 4px;
+      width: 80px;
+      height: 3px;
       background: linear-gradient(to right, var(--primary), var(--gold));
-      border-radius: 2px;
     }
 
-    .menu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      gap: 2.5rem;
+    .menu-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
     }
 
-    .menu-card {
+    .menu-category {
       background: var(--white);
-      border-radius: var(--radius-lg);
+      border-radius: var(--radius);
       overflow: hidden;
-      box-shadow: var(--shadow-lg);
-      transition: var(--transition);
-      position: relative;
-      border: 1px solid rgba(0, 0, 0, 0.05);
+      box-shadow: var(--shadow);
     }
 
-    .menu-card:hover {
-      transform: translateY(-15px);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    .category-header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 1rem;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
     }
 
-    .card-image {
-      height: 220px;
-      background: var(--gray);
-      overflow: hidden;
-      position: relative;
+    .category-header i {
+      margin-left: 0.5rem;
     }
 
-    .card-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: var(--transition);
+    .category-items {
+      padding: 0.5rem;
     }
 
-    .menu-card:hover .card-image img {
-      transform: scale(1.05);
-    }
-
-    .card-badge {
-      position: absolute;
-      top: 1.5rem;
-      left: 1.5rem;
-      background: var(--gold);
-      color: var(--dark);
-      padding: 0.3rem 1.2rem;
-      border-radius: 50px;
-      font-weight: 700;
-      font-size: 0.9rem;
-      box-shadow: var(--shadow-sm);
-    }
-
-    .card-content {
-      padding: 2rem;
-    }
-
-    .card-header {
+    .menu-item {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1rem;
+      padding: 1rem;
+      border-bottom: 1px dashed var(--gray);
+      transition: var(--transition);
     }
 
-    .card-title {
-      font-size: 1.5rem;
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-weight: 600;
       color: var(--dark);
-      font-weight: 700;
+      margin-bottom: 0.3rem;
+      display: flex;
+      align-items: center;
     }
 
-    .card-price {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--primary);
+    .item-name i {
+      margin-left: 0.5rem;
+      color: var(--gold);
+      font-size: 0.9rem;
     }
 
-    .card-desc {
+    .item-desc {
+      font-size: 0.85rem;
       color: var(--text);
       opacity: 0.8;
-      margin-bottom: 1.5rem;
-      font-size: 1rem;
     }
 
-    .card-footer {
+    .item-price {
+      font-weight: 700;
+      color: var(--primary);
+      min-width: 60px;
+      text-align: left;
+    }
+
+    /* سلة التسوق العائمة */
+    .cart-floating {
+      position: fixed;
+      bottom: 80px;
+      left: 1rem;
+      background: var(--primary);
+      color: var(--white);
+      width: calc(100% - 2rem);
+      padding: 1rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 90;
+      transform: translateY(150%);
+      transition: var(--transition);
+    }
+
+    .cart-floating.active {
+      transform: translateY(0);
+    }
+
+    .cart-info {
+      display: flex;
+      align-items: center;
+    }
+
+    .cart-icon {
+      position: relative;
+      margin-left: 0.8rem;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -8px;
+      background: var(--gold);
+      color: var(--dark);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .cart-total {
+      font-weight: 700;
+    }
+
+    .view-cart {
+      background: var(--white);
+      color: var(--primary);
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    /* نموذج الطلب للجوال */
+    .order-modal {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(5px);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      transform: translateY(100%);
+      transition: var(--transition);
+    }
+
+    .order-modal.active {
+      transform: translateY(0);
+    }
+
+    .modal-header {
+      background: var(--dark);
+      color: var(--white);
+      padding: 1rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .add-btn {
-      background: linear-gradient(to right, var(--primary), var(--accent));
-      color: var(--white);
+    .close-modal {
+      background: none;
       border: none;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      font-family: 'El Messiri', sans-serif;
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-      box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+      color: var(--white);
+      font-size: 1.5rem;
     }
 
-    .add-btn i {
-      margin-left: 0.5rem;
-    }
-
-    .add-btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
-    }
-
-    /* قسم الطلب المعدل */
-    .order-section {
+    .modal-body {
       background: var(--white);
-      padding: 6rem 0;
-      position: relative;
-    }
-
-    .order-container {
-      background: var(--white);
-      border-radius: var(--radius-lg);
-      box-shadow: var(--shadow-lg);
-      overflow: hidden;
-      display: grid;
-      grid-template-columns: 1fr 1.5fr;
-      min-height: 600px;
-    }
-
-    .order-image {
-      background: url('https://images.unsplash.com/photo-1414235077428-338989a2e8c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center/cover;
-    }
-
-    .order-form {
-      padding: 3rem;
-    }
-
-    .order-title {
-      font-size: 2.2rem;
-      color: var(--dark);
-      margin-bottom: 2rem;
-      position: relative;
-      padding-bottom: 1rem;
-    }
-
-    .order-title::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 60px;
-      height: 4px;
-      background: linear-gradient(to right, var(--primary), var(--gold));
-      border-radius: 2px;
-    }
-
-    .form-group {
-      margin-bottom: 1.8rem;
-    }
-
-    .form-label {
-      display: block;
-      margin-bottom: 0.8rem;
-      font-weight: 600;
-      color: var(--dark);
-      font-size: 1.1rem;
-      display: flex;
-      align-items: center;
-    }
-
-    .form-label i {
-      margin-left: 0.5rem;
-      color: var(--primary);
-    }
-
-    .form-control {
-      width: 100%;
-      padding: 1rem 1.2rem;
-      border: 1px solid var(--gray);
-      border-radius: var(--radius);
-      font-family: 'Montserrat', sans-serif;
-      transition: var(--transition);
-      background: var(--light);
-      font-size: 1rem;
-    }
-
-    .form-control:focus {
-      border-color: var(--primary);
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.2);
-      background: var(--white);
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
     }
 
     .order-items {
-      margin: 2.5rem 0;
-      max-height: 300px;
-      overflow-y: auto;
-      padding-right: 1rem;
+      margin-bottom: 1rem;
     }
 
     .order-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1.2rem;
+      padding: 0.8rem;
       background: var(--light);
-      border-radius: var(--radius);
-      margin-bottom: 1rem;
-      transition: var(--transition);
-    }
-
-    .order-item:hover {
-      transform: translateX(5px);
-    }
-
-    .item-name {
-      font-weight: 600;
-      flex: 1;
-    }
-
-    .item-price {
-      font-weight: 700;
-      color: var(--primary);
-      margin: 0 1.5rem;
-      min-width: 80px;
-      text-align: left;
+      border-radius: 8px;
+      margin-bottom: 0.5rem;
     }
 
     .item-actions {
@@ -382,240 +363,106 @@
     }
 
     .action-btn {
-      width: 36px;
-      height: 36px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--dark);
       color: var(--white);
+      border: none;
       display: flex;
       align-items: center;
       justify-content: center;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-left: 0.8rem;
-      border: none;
-    }
-
-    .action-btn:hover {
-      background: var(--primary);
-      transform: scale(1.1);
+      margin-left: 0.5rem;
     }
 
     .action-btn.remove {
       background: var(--primary);
     }
 
-    .action-btn.remove:hover {
-      background: #d23369;
+    .order-total {
+      font-weight: 700;
+      font-size: 1.2rem;
+      text-align: left;
+      margin: 1rem 0;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--gray);
     }
 
-    .order-total {
-      text-align: left;
-      font-size: 1.8rem;
-      font-weight: 700;
-      color: var(--dark);
-      margin-top: 2rem;
-      padding-top: 2rem;
-      border-top: 2px dashed rgba(0, 0, 0, 0.1);
-      display: flex;
-      justify-content: space-between;
+    .form-group {
+      margin-bottom: 1rem;
+    }
+
+    .form-control {
+      width: 100%;
+      padding: 0.8rem;
+      border: 1px solid var(--gray);
+      border-radius: 8px;
+      font-family: 'Tajawal', sans-serif;
     }
 
     .submit-btn {
-      background: linear-gradient(to right, var(--dark), var(--accent));
+      background: linear-gradient(to right, var(--primary), var(--dark));
       color: var(--white);
       border: none;
-      padding: 1.2rem;
+      padding: 1rem;
       width: 100%;
-      border-radius: var(--radius);
-      font-size: 1.2rem;
+      border-radius: 8px;
       font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition);
-      margin-top: 2rem;
+      margin-top: 1rem;
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 5px 20px rgba(15, 52, 96, 0.3);
     }
 
     .submit-btn i {
-      margin-left: 0.8rem;
-      font-size: 1.4rem;
-    }
-
-    .submit-btn:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(15, 52, 96, 0.4);
-      background: linear-gradient(to right, var(--accent), var(--dark));
-    }
-
-    .empty-cart {
-      text-align: center;
-      padding: 3rem 0;
-      color: var(--text);
-      opacity: 0.6;
-    }
-
-    .empty-cart i {
-      font-size: 3rem;
-      margin-bottom: 1.5rem;
-      opacity: 0.3;
-    }
-
-    .empty-cart p {
-      font-size: 1.2rem;
-    }
-
-    /* الفوتر المعدل */
-    footer {
-      background: var(--dark);
-      color: var(--white);
-      padding: 5rem 0 3rem;
-      position: relative;
-      clip-path: polygon(0 20%, 100% 0, 100% 100%, 0 100%);
-    }
-
-    .footer-content {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 3rem;
-      margin-bottom: 3rem;
-    }
-
-    .footer-logo {
-      font-size: 2.5rem;
-      font-weight: 700;
-      margin-bottom: 1.5rem;
-      color: var(--white);
-    }
-
-    .footer-about {
-      max-width: 300px;
-      opacity: 0.8;
-      line-height: 1.8;
-    }
-
-    .footer-title {
-      font-size: 1.5rem;
-      margin-bottom: 1.5rem;
-      position: relative;
-      padding-bottom: 0.8rem;
-    }
-
-    .footer-title::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      width: 50px;
-      height: 3px;
-      background: var(--gold);
-    }
-
-    .footer-links {
-      list-style: none;
-    }
-
-    .footer-links li {
-      margin-bottom: 0.8rem;
-    }
-
-    .footer-links a {
-      color: var(--white);
-      opacity: 0.8;
-      text-decoration: none;
-      transition: var(--transition);
-      display: flex;
-      align-items: center;
-    }
-
-    .footer-links a:hover {
-      opacity: 1;
-      transform: translateX(-5px);
-      color: var(--gold);
-    }
-
-    .footer-links i {
       margin-left: 0.5rem;
-      font-size: 0.9rem;
     }
 
-    .social-links {
-      display: flex;
-      margin-top: 1.5rem;
-    }
-
-    .social-link {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: rgba(255, 255, 255, 0.1);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-left: 1rem;
-      transition: var(--transition);
-      color: var(--white);
-      font-size: 1.2rem;
-    }
-
-    .social-link:hover {
-      background: var(--primary);
-      transform: translateY(-5px);
-    }
-
-    .copyright {
+    /* رسالة التأكيد */
+    .confirmation {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      background: var(--white);
+      padding: 2rem;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       text-align: center;
-      padding-top: 3rem;
-      margin-top: 3rem;
-      border-top: 1px solid rgba(255, 255, 255, 0.1);
-      opacity: 0.7;
-      font-size: 0.9rem;
+      z-index: 300;
+      transition: var(--transition);
+      max-width: 90%;
     }
 
-    /* تأثيرات للشاشات الصغيرة */
-    @media (max-width: 992px) {
-      .order-container {
-        grid-template-columns: 1fr;
-      }
-      
-      .order-image {
-        height: 300px;
-      }
+    .confirmation.active {
+      transform: translate(-50%, -50%) scale(1);
     }
 
-    @media (max-width: 768px) {
-      .logo {
-        font-size: 3.5rem;
+    .confirmation i {
+      font-size: 2.5rem;
+      color: var(--primary);
+      margin-bottom: 1rem;
+    }
+
+    /* تأثيرات للشاشات الكبيرة */
+    @media (min-width: 768px) {
+      .mobile-nav {
+        display: none;
       }
       
-      .menu-grid {
-        grid-template-columns: 1fr;
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
       }
       
       .hero {
-        height: auto;
-        min-height: auto;
-        padding: 6rem 0;
-        clip-path: none;
+        padding: 7rem 0 4rem;
       }
       
-      .footer-content {
-        grid-template-columns: 1fr;
+      .logo {
+        font-size: 3rem;
       }
-    }
-
-    /* تأثيرات التمرير */
-    [data-aos="fade-up"] {
-      opacity: 0;
-      transform: translateY(30px);
-      transition-property: transform, opacity;
-    }
-
-    [data-aos="fade-up"].aos-animate {
-      opacity: 1;
-      transform: translateY(0);
     }
   </style>
 </head>
@@ -623,136 +470,113 @@
   <!-- الهيدر -->
   <section class="hero">
     <div class="container">
-      <div class="hero-content" data-aos="fade-up" data-aos-duration="800">
-        <h1 class="logo">DAR HASNA</h1>
-        <p class="subtitle">تجربة طعام مغربية معاصرة تتناغم مع الأصالة والحداثة</p>
-        <div class="date-badge">
-          <i class="las la-calendar-alt"></i>
-          <span id="today-date"></span>
-        </div>
+      <h1 class="logo">دار حسنا</h1>
+      <p class="subtitle">مذاق مغربي أصيل في تجربة عصرية</p>
+      <div class="date-badge">
+        <i class="fas fa-calendar-alt"></i>
+        <span id="today-date"></span>
       </div>
     </div>
   </section>
 
-  <!-- قسم القائمة -->
+  <!-- القائمة -->
   <section class="menu-section">
     <div class="container">
-      <div class="section-title" data-aos="fade-up">
-        <h2>قائمتنا الذواقة</h2>
+      <div class="section-title">
+        <h2>قائمتنا الشهية</h2>
       </div>
 
-      <div class="menu-grid" id="menuContainer">
+      <div class="menu-list" id="menuContainer">
         <!-- سيتم تعبئة القائمة ديناميكياً هنا -->
         <div class="loading">جاري تحميل القائمة...</div>
       </div>
     </div>
   </section>
 
-  <!-- قسم الطلب -->
-  <section class="order-section">
-    <div class="container">
-      <div class="order-container" data-aos="fade-up" data-aos-duration="1000">
-        <div class="order-image"></div>
-        <div class="order-form">
-          <h2 class="order-title">تأكيد الطلب</h2>
-          
-          <form id="commandeForm">
-            <div class="form-group">
-              <label for="table"><i class="las la-table"></i> رقم الطاولة</label>
-              <input type="number" id="table" class="form-control" min="1" required>
-            </div>
-            
-            <div class="form-group">
-              <label for="notes"><i class="las la-edit"></i> ملاحظات خاصة</label>
-              <textarea id="notes" class="form-control" rows="3" placeholder="هل لديك أي متطلبات خاصة؟"></textarea>
-            </div>
-            
-            <div class="order-items" id="listeCommandes">
-              <div class="empty-cart">
-                <i class="las la-shopping-bag"></i>
-                <p>سلة طلباتك فارغة</p>
-              </div>
-            </div>
-            
-            <div class="order-total" id="totalCommande">
-              <span>المجموع:</span>
-              <span>0 درهم</span>
-            </div>
-            
-            <button type="submit" class="submit-btn">
-              <i class="las la-paper-plane"></i> تأكيد الطلب
-            </button>
-          </form>
-        </div>
+  <!-- سلة التسوق العائمة -->
+  <div class="cart-floating" id="cartFloating">
+    <div class="cart-info">
+      <div class="cart-icon">
+        <i class="fas fa-shopping-cart"></i>
+        <span class="cart-count" id="cartCount">0</span>
       </div>
+      <span>سلة المشتريات</span>
     </div>
-  </section>
+    <div class="cart-total" id="cartTotal">0 درهم</div>
+    <button class="view-cart" id="viewCart">عرض</button>
+  </div>
 
-  <!-- الفوتر -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-col">
-          <div class="footer-logo">DAR HASNA</div>
-          <p class="footer-about">مطعم دار حسنا يقدم تجربة طعام مغربية معاصرة منذ 1985، ندمج الأصالة مع الحداثة لنقدم لكم أطباقاً تليق بأذواقكم الرفيعة.</p>
-          <div class="social-links">
-            <a href="#" class="social-link"><i class="lab la-instagram"></i></a>
-            <a href="#" class="social-link"><i class="lab la-facebook-f"></i></a>
-            <a href="#" class="social-link"><i class="lab la-twitter"></i></a>
-            <a href="#" class="social-link"><i class="lab la-tripadvisor"></i></a>
+  <!-- نموذج الطلب (مودال) -->
+  <div class="order-modal" id="orderModal">
+    <div class="modal-header">
+      <h3>تأكيد الطلب</h3>
+      <button class="close-modal" id="closeModal">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form id="commandeForm">
+        <div class="form-group">
+          <label for="table">رقم الطاولة</label>
+          <input type="number" id="table" class="form-control" min="1" required>
+        </div>
+        
+        <div class="form-group">
+          <label for="notes">ملاحظات</label>
+          <textarea id="notes" class="form-control" rows="3" placeholder="أي ملاحظات أو طلبات خاصة"></textarea>
+        </div>
+        
+        <div class="order-items" id="listeCommandes">
+          <div style="text-align: center; padding: 2rem 0; color: var(--text); opacity: 0.6;">
+            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>لا توجد أصناف في السلة</p>
           </div>
         </div>
         
-        <div class="footer-col">
-          <h3 class="footer-title">روابط سريعة</h3>
-          <ul class="footer-links">
-            <li><a href="#"><i class="las la-angle-left"></i> القائمة</a></li>
-            <li><a href="#"><i class="las la-angle-left"></i> عن المطعم</a></li>
-            <li><a href="#"><i class="las la-angle-left"></i> فريق العمل</a></li>
-            <li><a href="#"><i class="las la-angle-left"></i> الشهادات</a></li>
-            <li><a href="#"><i class="las la-angle-left"></i> الاتصال بنا</a></li>
-          </ul>
-        </div>
+        <div class="order-total" id="totalCommande">المجموع: 0 درهم</div>
         
-        <div class="footer-col">
-          <h3 class="footer-title">ساعات العمل</h3>
-          <ul class="footer-links">
-            <li><i class="las la-angle-left"></i> الأحد - الخميس: 11 ص - 11 م</li>
-            <li><i class="las la-angle-left"></i> الجمعة - السبت: 12 ظ - 12 ص</li>
-            <li><i class="las la-angle-left"></i> أيام العطل: 12 ظ - 11 م</li>
-          </ul>
-        </div>
-        
-        <div class="footer-col">
-          <h3 class="footer-title">تواصل معنا</h3>
-          <ul class="footer-links">
-            <li><i class="las la-map-marker-alt"></i> شارع محمد الخامس، الدار البيضاء</li>
-            <li><i class="las la-phone"></i> +212 6 12 34 56 78</li>
-            <li><i class="las la-envelope"></i> info@darhasna.com</li>
-          </ul>
-        </div>
-      </div>
-      
-      <div class="copyright">
-        <p>© 2023 دار حسنا. جميع الحقوق محفوظة | صمم بحب من أجل تجربة طعام استثنائية</p>
-      </div>
+        <button type="submit" class="submit-btn">
+          <i class="fas fa-paper-plane"></i> تأكيد الطلب
+        </button>
+      </form>
     </div>
-  </footer>
+  </div>
 
-  <!-- مكتبة AOS للحركات -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <!-- رسالة التأكيد -->
+  <div class="confirmation" id="confirmation">
+    <i class="fas fa-check-circle"></i>
+    <h3 style="margin-bottom: 1rem;">تم تأكيد طلبك بنجاح!</h3>
+    <p id="confirmationText"></p>
+    <button class="submit-btn" id="closeConfirmation" style="margin-top: 1.5rem;">
+      <i class="fas fa-times"></i> إغلاق
+    </button>
+  </div>
+
+  <!-- شريط التنقل للجوال -->
+  <nav class="mobile-nav">
+    <a href="#" class="nav-item active">
+      <i class="fas fa-home"></i>
+      <span>الرئيسية</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-utensils"></i>
+      <span>القائمة</span>
+    </a>
+    <a href="#" class="nav-item" id="cartNavItem">
+      <i class="fas fa-shopping-cart"></i>
+      <span>السلة</span>
+    </a>
+    <a href="#" class="nav-item">
+      <i class="fas fa-info-circle"></i>
+      <span>حولنا</span>
+    </a>
+  </nav>
+
   <!-- Firebase SDK -->
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <script>
-    // Initialize AOS animations
-    AOS.init({
-      duration: 800,
-      easing: 'ease-in-out',
-      once: true
-    });
-
     // Firebase Configuration
     const firebaseConfig = {
       apiKey: "AIzaSyDpSF4J0bsd6T0ImMpse0KQQRADaxiYUQw",
@@ -772,6 +596,18 @@
     let commandes = [];
     let total = 0;
 
+    // عناصر DOM
+    const cartFloating = document.getElementById('cartFloating');
+    const cartCount = document.getElementById('cartCount');
+    const cartTotal = document.getElementById('cartTotal');
+    const viewCartBtn = document.getElementById('viewCart');
+    const orderModal = document.getElementById('orderModal');
+    const closeModalBtn = document.getElementById('closeModal');
+    const cartNavItem = document.getElementById('cartNavItem');
+    const confirmation = document.getElementById('confirmation');
+    const confirmationText = document.getElementById('confirmationText');
+    const closeConfirmationBtn = document.getElementById('closeConfirmation');
+
     // دالة لعرض تاريخ اليوم بالأرقام الفرنسية
     function displayTodayDate() {
       const today = new Date();
@@ -790,48 +626,47 @@
         if (menuData && menuData.length > 0) {
           menuContainer.innerHTML = '';
           
-          menuData.forEach((section, index) => {
-            const menuCard = document.createElement('div');
-            menuCard.className = 'menu-card';
-            menuCard.setAttribute('data-aos', 'fade-up');
-            menuCard.setAttribute('data-aos-delay', index * 100);
+          menuData.forEach(section => {
+            const categoryDiv = document.createElement('div');
+            categoryDiv.className = 'menu-category';
             
-            // صورة افتراضية مختلفة لكل قسم
-            const imageUrl = [
-              'https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-              'https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-              'https://images.unsplash.com/photo-1565557623262-b51c2513a641?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80',
-              'https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80'
-            ][index % 4];
-            
-            menuCard.innerHTML = `
-              <div class="card-image">
-                <img src="${imageUrl}" alt="${section.section}">
-                <div class="card-badge">${section.section}</div>
-              </div>
-              <div class="card-content">
-                <div class="card-header">
-                  <h3 class="card-title">${section.section}</h3>
-                </div>
-                ${section.items.map(item => `
-                  <div class="menu-item" data-plat="${item.plat}" data-prix="${item.prix}">
-                    <div class="item-info">
-                      <h4 class="item-name">${item.plat}</h4>
-                      <p class="card-desc">${item.description}</p>
-                    </div>
-                    <div class="item-price">${item.prix} درهم</div>
-                  </div>
-                `).join('')}
-              </div>
+            const categoryHeader = document.createElement('div');
+            categoryHeader.className = 'category-header';
+            categoryHeader.innerHTML = `
+              <i class="fas fa-${section.icon || 'utensils'}"></i>
+              ${section.section}
             `;
             
-            menuContainer.appendChild(menuCard);
+            const categoryItems = document.createElement('div');
+            categoryItems.className = 'category-items';
+            
+            section.items.forEach(item => {
+              const itemDiv = document.createElement('div');
+              itemDiv.className = 'menu-item';
+              itemDiv.setAttribute('data-plat', item.plat);
+              itemDiv.setAttribute('data-prix', item.prix);
+              itemDiv.innerHTML = `
+                <div class="item-info">
+                  <div class="item-name">
+                    <i class="fas fa-${item.icon || 'circle'}"></i>
+                    ${item.plat}
+                  </div>
+                  <div class="item-desc">${item.description}</div>
+                </div>
+                <div class="item-price">${item.prix} درهم</div>
+              `;
+              categoryItems.appendChild(itemDiv);
+            });
+            
+            categoryDiv.appendChild(categoryHeader);
+            categoryDiv.appendChild(categoryItems);
+            menuContainer.appendChild(categoryDiv);
           });
           
           // إعادة ربط أحداث النقر على العناصر
           attachMenuItemsEvents();
         } else {
-          menuContainer.innerHTML = '<div class="empty-cart"><i class="las la-utensils"></i><p>لا توجد عناصر في القائمة حالياً</p></div>';
+          menuContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">لا توجد عناصر في القائمة حالياً</div>';
         }
       });
     }
@@ -863,76 +698,80 @@
           }, 200);
           
           // تحديث العرض
-          afficherCommandes();
+          updateCartDisplay();
+          
+          // إظهار سلة التسوق العائمة
+          cartFloating.classList.add('active');
         });
       });
     }
 
-    // عرض قائمة الطلبات
-    function afficherCommandes() {
+    // تحديث عرض السلة
+    function updateCartDisplay() {
+      // حساب العدد الإجمالي والمجموع
+      let count = 0;
+      total = 0;
+      
+      commandes.forEach(commande => {
+        count += commande.quantite;
+        total += commande.quantite * commande.prix;
+      });
+      
+      // تحديث العناصر
+      cartCount.textContent = count;
+      cartTotal.textContent = total + ' درهم';
+      
+      // تحديث قائمة الطلبات في المودال
       const listeCommandes = document.getElementById('listeCommandes');
       listeCommandes.innerHTML = '';
-      total = 0;
       
       if (commandes.length === 0) {
         listeCommandes.innerHTML = `
-          <div class="empty-cart">
-            <i class="las la-shopping-bag"></i>
-            <p>سلة طلباتك فارغة</p>
+          <div style="text-align: center; padding: 2rem 0; color: var(--text); opacity: 0.6;">
+            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>لا توجد أصناف في السلة</p>
           </div>
         `;
-        document.getElementById('totalCommande').innerHTML = `
-          <span>المجموع:</span>
-          <span>0 درهم</span>
-        `;
-        return;
+      } else {
+        commandes.forEach((commande, index) => {
+          const sousTotal = commande.quantite * commande.prix;
+          
+          const orderItem = document.createElement('div');
+          orderItem.className = 'order-item';
+          orderItem.innerHTML = `
+            <div>${commande.plat}</div>
+            <div style="font-weight: 700;">${sousTotal} درهم</div>
+            <div class="item-actions">
+              <button class="action-btn remove" data-index="${index}">
+                <i class="fas fa-trash"></i>
+              </button>
+              <button class="action-btn" data-index="${index}" data-action="decrease">
+                <i class="fas fa-minus"></i>
+              </button>
+              <span style="margin: 0 0.5rem;">${commande.quantite}</span>
+              <button class="action-btn" data-index="${index}" data-action="increase">
+                <i class="fas fa-plus"></i>
+              </button>
+            </div>
+          `;
+          listeCommandes.appendChild(orderItem);
+        });
       }
       
-      commandes.forEach((commande, index) => {
-        const sousTotal = commande.quantite * commande.prix;
-        total += sousTotal;
-        
-        const orderItem = document.createElement('div');
-        orderItem.className = 'order-item';
-        orderItem.innerHTML = `
-          <div class="item-name">${commande.plat}</div>
-          <div class="item-price">${sousTotal} درهم</div>
-          <div class="item-actions">
-            <button class="action-btn remove" data-index="${index}">
-              <i class="las la-trash"></i>
-            </button>
-            <button class="action-btn" data-index="${index}" data-action="decrease">
-              <i class="las la-minus"></i>
-            </button>
-            <span style="margin: 0 0.5rem;">${commande.quantite}</span>
-            <button class="action-btn" data-index="${index}" data-action="increase">
-              <i class="las la-plus"></i>
-            </button>
-          </div>
-        `;
-        listeCommandes.appendChild(orderItem);
-      });
+      // تحديث المجموع الكلي في المودال
+      document.getElementById('totalCommande').textContent = `المجموع: ${total} درهم`;
       
-      // تحديث المجموع الكلي
-      document.getElementById('totalCommande').innerHTML = `
-        <span>المجموع:</span>
-        <span>${total} درهم</span>
-      `;
-      
-      // إضافة أحداث لحذف الأصناف
+      // إضافة أحداث للأزرار في المودال
       document.querySelectorAll('.action-btn.remove').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
+        btn.addEventListener('click', function() {
           const index = parseInt(this.getAttribute('data-index'));
           commandes.splice(index, 1);
-          afficherCommandes();
+          updateCartDisplay();
         });
       });
       
-      // إضافة أحداث لتغيير الكمية
       document.querySelectorAll('.action-btn:not(.remove)').forEach(btn => {
-        btn.addEventListener('click', function(e) {
-          e.stopPropagation();
+        btn.addEventListener('click', function() {
           const index = parseInt(this.getAttribute('data-index'));
           const action = this.getAttribute('data-action');
           
@@ -944,10 +783,30 @@
             commandes.splice(index, 1);
           }
           
-          afficherCommandes();
+          updateCartDisplay();
         });
       });
     }
+
+    // أحداث النقر على الأزرار
+    viewCartBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      orderModal.classList.add('active');
+    });
+    
+    closeModalBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      orderModal.classList.remove('active');
+    });
+    
+    cartNavItem.addEventListener('click', function(e) {
+      e.preventDefault();
+      orderModal.classList.add('active');
+    });
+    
+    closeConfirmationBtn.addEventListener('click', function() {
+      confirmation.classList.remove('active');
+    });
 
     // عند تحميل الصفحة
     document.addEventListener('DOMContentLoaded', function() {
@@ -979,31 +838,19 @@
           statut: 'في الانتظار'
         }).then(() => {
           // عرض رسالة التأكيد
-          const confirmation = document.createElement('div');
-          confirmation.className = 'confirmation';
-          confirmation.innerHTML = `
-            <i class="las la-check-circle"></i>
-            <h3 style="margin: 1rem 0; color: var(--dark);">تم تأكيد طلبك بنجاح!</h3>
-            <p>رقم الطاولة: ${table}</p>
-            <p style="font-weight: 700; margin: 1rem 0; color: var(--dark);">المجموع: ${total} درهم</p>
-            ${notes ? `<p><strong>ملاحظاتك:</strong> ${notes}</p>` : ''}
-            <p style="margin-top: 1rem; font-size: 0.9rem; opacity: 0.8;">شكراً لاختياركم دار حسنا</p>
+          confirmationText.innerHTML = `
+            <p>رقم الطاولة: <strong>${table}</strong></p>
+            <p style="margin: 1rem 0;">المجموع: <strong>${total} درهم</strong></p>
+            ${notes ? `<p>ملاحظات: ${notes}</p>` : ''}
           `;
-          
-          document.getElementById('commandeForm').appendChild(confirmation);
+          confirmation.classList.add('active');
           
           // إعادة تعيين النموذج
           commandes = [];
-          afficherCommandes();
+          updateCartDisplay();
           this.reset();
-          
-          // إخفاء رسالة التأكيد بعد 5 ثواني
-          setTimeout(() => {
-            confirmation.style.opacity = '0';
-            setTimeout(() => {
-              confirmation.remove();
-            }, 300);
-          }, 5000);
+          orderModal.classList.remove('active');
+          cartFloating.classList.remove('active');
         }).catch(error => {
           alert('حدث خطأ أثناء إرسال الطلب: ' + error.message);
         });
