@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
@@ -510,39 +511,113 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
+    // دالة لإرسال قائمة الطعام إلى Firebase
+    function envoyerMenuAFirebase() {
+      const menuSections = document.querySelectorAll('.menu-section');
+      const menuData = [];
+      
+      menuSections.forEach(section => {
+        const sectionTitle = section.querySelector('h3').textContent;
+        const items = [];
+        
+        section.querySelectorAll('.menu-item').forEach(item => {
+          items.push({
+            plat: item.getAttribute('data-plat'),
+            prix: parseInt(item.getAttribute('data-prix')),
+            description: item.querySelector('.item-desc').textContent
+          });
+        });
+        
+        menuData.push({
+          section: sectionTitle,
+          items: items
+        });
+      });
+      
+      database.ref('menu').set(menuData)
+        .then(() => console.log('تم رفع القائمة بنجاح إلى Firebase'))
+        .catch(error => console.error('حدث خطأ في رفع القائمة:', error));
+    }
+
     // متغيرات لتخزين الطلبات
     let commandes = [];
     let total = 0;
 
-    // اختيار الطبق بالضغط عليه وإضافته مباشرة
-    document.querySelectorAll('.menu-item').forEach(item => {
-      item.addEventListener('click', function() {
-        // إزالة التحديد من جميع الأطباق
-        document.querySelectorAll('.menu-item').forEach(i => {
-          i.classList.remove('selected');
+    // عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', function() {
+      // إرسال القائمة إلى Firebase
+      envoyerMenuAFirebase();
+      
+      // اختيار الطبق بالضغط عليه وإضافته مباشرة
+      document.querySelectorAll('.menu-item').forEach(item => {
+        item.addEventListener('click', function() {
+          // إزالة التحديد من جميع الأطباق
+          document.querySelectorAll('.menu-item').forEach(i => {
+            i.classList.remove('selected');
+          });
+          
+          // إضافة التحديد للطبق المختار
+          this.classList.add('selected');
+          
+          // إضافة الطبق المختار إلى الطلب مباشرة
+          const plat = this.getAttribute('data-plat');
+          const prix = parseInt(this.getAttribute('data-prix'));
+          
+          // إضافة إلى قائمة الطلبات
+          commandes.push({
+            plat: plat,
+            quantite: 1, // كمية افتراضية
+            prix: prix
+          });
+          
+          // تحديث العرض
+          afficherCommandes();
+          
+          // إزالة التحديد بعد إضافة الطبق
+          setTimeout(() => {
+            this.classList.remove('selected');
+          }, 300);
+        });
+      });
+
+      // معالجة إرسال النموذج
+      document.getElementById('commandeForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const table = document.getElementById('table').value;
+        const notes = document.getElementById('notes').value;
+        
+        if (!table || commandes.length === 0) {
+          alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
+          return;
+        }
+        
+        // إرسال البيانات إلى Firebase
+        database.ref('commandes').push({
+          table: table,
+          notes: notes,
+          commandes: commandes,
+          total: total,
+          timestamp: firebase.database.ServerValue.TIMESTAMP,
+          statut: 'في الانتظار'
         });
         
-        // إضافة التحديد للطبق المختار
-        this.classList.add('selected');
+        // عرض رسالة التأكيد
+        const confirmation = document.getElementById('confirmation');
+        confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم` + 
+                                 (notes ? `\nملاحظة: ${notes}` : '');
+        confirmation.style.display = 'block';
         
-        // إضافة الطبق المختار إلى الطلب مباشرة
-        const plat = this.getAttribute('data-plat');
-        const prix = parseInt(this.getAttribute('data-prix'));
-        
-        // إضافة إلى قائمة الطلبات
-        commandes.push({
-          plat: plat,
-          quantite: 1, // كمية افتراضية
-          prix: prix
-        });
-        
-        // تحديث العرض
+        // إعادة تعيين النموذج
+        commandes = [];
         afficherCommandes();
+        document.getElementById('table').value = '';
+        document.getElementById('notes').value = '';
         
-        // إزالة التحديد بعد إضافة الطبق
+        // إخفاء رسالة التأكيد بعد 5 ثواني
         setTimeout(() => {
-          this.classList.remove('selected');
-        }, 300);
+          confirmation.style.display = 'none';
+        }, 5000);
       });
     });
 
@@ -600,46 +675,6 @@
         });
       });
     }
-
-    // معالجة إرسال النموذج
-    document.getElementById('commandeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-      
-      const table = document.getElementById('table').value;
-      const notes = document.getElementById('notes').value;
-      
-      if (!table || commandes.length === 0) {
-        alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
-        return;
-      }
-      
-      // إرسال البيانات إلى Firebase
-      database.ref('commandes').push({
-        table: table,
-        notes: notes,
-        commandes: commandes,
-        total: total,
-        timestamp: firebase.database.ServerValue.TIMESTAMP,
-        statut: 'في الانتظار'
-      });
-      
-      // عرض رسالة التأكيد
-      const confirmation = document.getElementById('confirmation');
-      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم` + 
-                               (notes ? `\nملاحظة: ${notes}` : '');
-      confirmation.style.display = 'block';
-      
-      // إعادة تعيين النموذج
-      commandes = [];
-      afficherCommandes();
-      document.getElementById('table').value = '';
-      document.getElementById('notes').value = '';
-      
-      // إخفاء رسالة التأكيد بعد 5 ثواني
-      setTimeout(() => {
-        confirmation.style.display = 'none';
-      }, 5000);
-    });
   </script>
 </body>
 </html>
