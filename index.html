@@ -41,16 +41,6 @@
       overflow: hidden;
     }
     
-    .container:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 100%;
-      height: 10px;
-      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
-    }
-    
     /* عناوين مغربية */
     h1, h2, h3 {
       color: var(--color-primary);
@@ -64,18 +54,6 @@
       font-size: 3.5rem;
       font-weight: 700;
       letter-spacing: 2px;
-      position: relative;
-      padding-bottom: 15px;
-    }
-    
-    h1:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 35%;
-      width: 30%;
-      height: 3px;
-      background: linear-gradient(to left, transparent, var(--color-primary), transparent);
     }
     
     .subtitle {
@@ -87,13 +65,6 @@
       font-style: italic;
     }
     
-    .subtitle:before, .subtitle:after {
-      content: "❁";
-      color: var(--color-secondary);
-      margin: 0 15px;
-      font-size: 1.5rem;
-    }
-    
     /* بطاقات الأصناف */
     .menu-section {
       margin-bottom: 40px;
@@ -101,20 +72,6 @@
       padding: 25px;
       border-radius: 5px;
       border: 2px dashed var(--color-secondary);
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .menu-section:before {
-      content: "";
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      right: 10px;
-      bottom: 10px;
-      border: 1px solid rgba(156, 46, 46, 0.1);
-      border-radius: 3px;
-      pointer-events: none;
     }
     
     .menu-section h3 {
@@ -123,60 +80,48 @@
       margin-bottom: 30px;
       color: var(--color-primary);
       font-size: 2.2rem;
-      font-weight: 600;
-    }
-    
-    .menu-section h3:after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      right: 30%;
-      width: 40%;
-      height: 2px;
-      background: linear-gradient(to left, transparent, var(--color-secondary), transparent);
     }
     
     .menu-item {
       display: flex;
       justify-content: space-between;
       margin-bottom: 25px;
-      padding-bottom: 20px;
-      border-bottom: 1px dotted var(--color-secondary);
-      transition: all 0.3s ease;
-      align-items: center;
+      padding: 15px;
+      border-radius: 5px;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: 1px solid transparent;
     }
     
     .menu-item:hover {
       transform: translateX(-10px);
       background-color: rgba(255, 248, 240, 0.9);
-      padding: 15px;
-      border-radius: 5px;
+      border: 1px solid var(--color-secondary);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+    }
+    
+    .menu-item.selected {
+      background-color: rgba(156, 46, 46, 0.1);
+      border: 1px solid var(--color-primary);
+      transform: translateX(-10px);
     }
     
     .item-name {
       font-weight: bold;
       color: var(--color-primary);
       font-size: 1.5rem;
-      flex: 1;
     }
     
     .item-price {
       color: var(--color-primary);
       font-weight: bold;
       font-size: 1.5rem;
-      min-width: 100px;
-      text-align: left;
-      background-color: rgba(156, 46, 46, 0.1);
-      padding: 5px 10px;
-      border-radius: 5px;
     }
     
     .item-desc {
       font-size: 1.2rem;
       color: var(--color-text);
-      margin-top: 10px;
-      font-style: italic;
-      flex-basis: 100%;
+      margin-top: 8px;
     }
     
     /* النموذج */
@@ -186,25 +131,11 @@
       border-radius: 5px;
       margin-top: 40px;
       border: 2px solid var(--color-primary);
-      position: relative;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    }
-    
-    form:before {
-      content: "";
-      position: absolute;
-      top: 5px;
-      left: 5px;
-      right: 5px;
-      bottom: 5px;
-      border: 1px dashed var(--color-secondary);
-      border-radius: 3px;
-      pointer-events: none;
     }
     
     label {
       display: block;
-      margin: 25px 0 15px;
+      margin: 20px 0 10px;
       font-weight: bold;
       color: var(--color-primary);
       font-size: 1.3rem;
@@ -217,14 +148,6 @@
       border-radius: 5px;
       font-size: 1.2rem;
       font-family: 'Lateef', cursive;
-      background-color: rgba(255,255,255,0.8);
-      transition: all 0.3s;
-    }
-    
-    input:focus, select:focus {
-      border-color: var(--color-secondary);
-      box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
-      outline: none;
     }
     
     button {
@@ -240,32 +163,12 @@
       transition: all 0.3s;
       font-weight: bold;
       font-family: 'Amiri', serif;
-      letter-spacing: 1px;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
-    
-    button:before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: 0.5s;
-      z-index: -1;
     }
     
     button:hover {
       background-color: var(--color-secondary);
       transform: translateY(-3px);
       box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-    }
-    
-    button:hover:before {
-      left: 100%;
     }
     
     .confirmation {
@@ -287,14 +190,7 @@
       border-radius: 5px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       border-right: 4px solid var(--color-secondary);
-      transition: all 0.3s;
-    }
-    
-    .commande-item:hover {
-      transform: scale(1.02);
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     
     .remove-item {
@@ -303,12 +199,6 @@
       font-weight: bold;
       margin-right: 15px;
       font-size: 1.5rem;
-      transition: all 0.3s;
-    }
-    
-    .remove-item:hover {
-      color: var(--color-secondary);
-      transform: scale(1.2);
     }
     
     #listeCommandes {
@@ -321,9 +211,6 @@
       margin-top: 20px;
       font-size: 1.8rem;
       color: var(--color-primary);
-      padding: 10px;
-      background-color: rgba(156, 46, 46, 0.1);
-      border-radius: 5px;
     }
     
     /* زخارف مغربية */
@@ -335,88 +222,30 @@
       letter-spacing: 15px;
     }
     
-    /* رأس الصفحة */
-    .header {
-      text-align: center;
-      margin-bottom: 40px;
-      position: relative;
-    }
-    
-    .header-logo {
-      width: 120px;
-      height: 120px;
-      margin: 0 auto 20px;
-      background-color: var(--color-primary);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 2.5rem;
-      border: 3px solid var(--color-accent);
-      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    }
-    
-    /* تذييل الصفحة */
-    .footer {
-      text-align: center;
-      margin-top: 50px;
-      padding: 20px;
-      color: var(--color-text);
-      font-size: 1.1rem;
-      border-top: 1px dashed var(--color-secondary);
-    }
-    
     @media (max-width: 768px) {
       .container {
         padding: 15px;
-        margin: 10px;
       }
       
       h1 {
         font-size: 2.5rem;
-      }
-      
-      .subtitle {
-        font-size: 1.4rem;
-      }
-      
-      .menu-section {
-        padding: 15px;
-      }
-      
-      .menu-item {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      
-      .item-price {
-        margin-top: 10px;
-        align-self: flex-end;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- رأس الصفحة -->
-    <div class="header">
-      <div class="header-logo">
-        <i class="fas fa-utensils"></i>
-      </div>
-      <h1>دار حســـنا</h1>
-      <p class="subtitle">مطعم مغربي أصيل منذ 1985</p>
-    </div>
-    
-    <!-- زخرفة علوية -->
     <div class="moroccan-decoration">✻ ❁ ✻ ❁ ✻</div>
     
-    <h2>قائمتنا الشعبية</h2>
+    <h1>دار حسنا</h1>
+    <p class="subtitle">مطبخ مغربي أصيل منذ 1985</p>
+    
+    <h2>قائمتنا الشهية</h2>
     
     <div class="menu-section">
-      <h3><i class="fas fa-drumstick-bite"></i> الأطباق الرئيسية</h3>
+      <h3>الأطباق الرئيسية</h3>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="الكسكس بالخضار واللحم" data-prix="85">
         <div>
           <div class="item-name">الكسكس بالخضار واللحم</div>
           <div class="item-desc">سميد مع الخضار الموسمية واللحم الطري مع مرق خاص</div>
@@ -424,7 +253,7 @@
         <div class="item-price">85 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="الطاجين بالزيتون والليمون" data-prix="75">
         <div>
           <div class="item-name">الطاجين بالزيتون والليمون</div>
           <div class="item-desc">دجاج مطهو بزيت الزيتون مع الزيتون والليمون المحفوظ</div>
@@ -432,7 +261,7 @@
         <div class="item-price">75 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="البسطيلة المغربية" data-prix="90">
         <div>
           <div class="item-name">البسطيلة المغربية</div>
           <div class="item-desc">ورق البسطيلة المحشو بلحم الحمام واللوز والتوابل</div>
@@ -440,7 +269,7 @@
         <div class="item-price">90 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="المشوي" data-prix="120">
         <div>
           <div class="item-name">المشوي</div>
           <div class="item-desc">لحم ضأن مشوي على الفحم بطريقة تقليدية</div>
@@ -450,9 +279,9 @@
     </div>
     
     <div class="menu-section">
-      <h3><i class="fas fa-egg"></i> المقبلات والشوربات</h3>
+      <h3>المقبلات والشوربات</h3>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="الحريرة المغربية" data-prix="35">
         <div>
           <div class="item-name">الحريرة المغربية</div>
           <div class="item-desc">شوربة العدس بالحمص واللحم والتوابل</div>
@@ -460,7 +289,7 @@
         <div class="item-price">35 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="البريوات" data-prix="45">
         <div>
           <div class="item-name">البريوات</div>
           <div class="item-desc">ورق البريوات المحشو باللحم المفروم أو الجبن</div>
@@ -468,7 +297,7 @@
         <div class="item-price">45 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="السلطة المغربية" data-prix="40">
         <div>
           <div class="item-name">السلطة المغربية</div>
           <div class="item-desc">خضروات طازجة مع الكزبرة والليمون</div>
@@ -478,9 +307,9 @@
     </div>
     
     <div class="menu-section">
-      <h3><i class="fas fa-mug-hot"></i> الحلويات والمشروبات</h3>
+      <h3>الحلويات والمشروبات</h3>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="البقلاوة" data-prix="30">
         <div>
           <div class="item-name">البقلاوة</div>
           <div class="item-desc">حلوة مكونة من طبقات عجين محشوة باللوز والعسل</div>
@@ -488,7 +317,7 @@
         <div class="item-price">30 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="المحنشة" data-prix="35">
         <div>
           <div class="item-name">المحنشة</div>
           <div class="item-desc">حلوة على شكل ثعبان محشوة بمعجون اللوز</div>
@@ -496,7 +325,7 @@
         <div class="item-price">35 درهم</div>
       </div>
       
-      <div class="menu-item">
+      <div class="menu-item" data-plat="الشاي المغربي" data-prix="20">
         <div>
           <div class="item-name">الشاي المغربي</div>
           <div class="item-desc">شاي أخضر مع النعناع الطازج والسكر</div>
@@ -505,64 +334,35 @@
       </div>
     </div>
     
-    <!-- زخرفة سفلية -->
     <div class="moroccan-decoration">❁ ✻ ❁ ✻ ❁</div>
     
     <form id="commandeForm">
-      <h2><i class="fas fa-clipboard-list"></i> تقديم الطلب</h2>
+      <h2>تقديم الطلب</h2>
       
-      <label for="table"><i class="fas fa-chair"></i> رقم الطاولة:</label>
+      <label for="table">رقم الطاولة:</label>
       <input type="number" id="table" min="1" required>
       
-      <label for="plat"><i class="fas fa-utensil-spoon"></i> اختر طبقك:</label>
-      <select id="plat">
-        <option value="">-- اختر من القائمة --</option>
-        <option value="الكسكس بالخضار واللحم">الكسكس بالخضار واللحم - 85 درهم</option>
-        <option value="الطاجين بالزيتون والليمون">الطاجين بالزيتون والليمون - 75 درهم</option>
-        <option value="البسطيلة المغربية">البسطيلة المغربية - 90 درهم</option>
-        <option value="المشوي">المشوي - 120 درهم</option>
-        <option value="الحريرة المغربية">الحريرة المغربية - 35 درهم</option>
-        <option value="البريوات">البريوات - 45 درهم</option>
-        <option value="السلطة المغربية">السلطة المغربية - 40 درهم</option>
-        <option value="البقلاوة">البقلاوة - 30 درهم</option>
-        <option value="المحنشة">المحنشة - 35 درهم</option>
-        <option value="الشاي المغربي">الشاي المغربي - 20 درهم</option>
-      </select>
-      
-      <label for="quantite"><i class="fas fa-calculator"></i> الكمية:</label>
+      <label for="quantite">الكمية:</label>
       <input type="number" id="quantite" min="1" value="1">
       
+      <div id="selected-item" style="margin: 20px 0; padding: 15px; background-color: rgba(156, 46, 46, 0.1); border-radius: 5px; display: none;">
+        <strong>الطبق المحدد:</strong> <span id="selected-item-name"></span> (<span id="selected-item-price"></span> درهم)
+      </div>
+      
       <button type="button" id="ajouterPlat">
-        <i class="fas fa-plus-circle"></i> إضافة إلى الطلب
+        إضافة إلى الطلب
       </button>
       
       <div id="listeCommandes"></div>
       
-      <div class="total" id="totalCommande">
-        <i class="fas fa-coins"></i> المجموع: 0 درهم
-      </div>
+      <div class="total" id="totalCommande">المجموع: 0 درهم</div>
       
       <button type="submit">
-        <i class="fas fa-check-circle"></i> تأكيد الطلب
+        تأكيد الطلب
       </button>
       
       <div id="confirmation" class="confirmation"></div>
     </form>
-    
-    <!-- تذييل الصفحة -->
-    <div class="footer">
-      <p>دار حسنا © 2023 - جميع الحقوق محفوظة</p>
-      <p>
-        <i class="fas fa-map-marker-alt"></i> شارع علال بن عبد الله، مراكش
-        <br>
-        <i class="fas fa-phone"></i> 0524-442233
-      </p>
-      <div style="margin-top: 15px; font-size: 1.5rem;">
-        <i class="fab fa-facebook" style="color: #3b5998; margin: 0 10px;"></i>
-        <i class="fab fa-instagram" style="color: #e4405f; margin: 0 10px;"></i>
-        <i class="fab fa-tripadvisor" style="color: #00af87; margin: 0 10px;"></i>
-      </div>
-    </div>
   </div>
 
   <!-- Firebase SDK -->
@@ -585,47 +385,59 @@
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // أسعار الأطباق
-    const prixPlats = {
-      "الكسكس بالخضار واللحم": 85,
-      "الطاجين بالزيتون والليمون": 75,
-      "البسطيلة المغربية": 90,
-      "المشوي": 120,
-      "الحريرة المغربية": 35,
-      "البريوات": 45,
-      "السلطة المغربية": 40,
-      "البقلاوة": 30,
-      "المحنشة": 35,
-      "الشاي المغربي": 20
-    };
-
     // متغيرات لتخزين الطلبات
     let commandes = [];
     let total = 0;
+    let selectedItem = null;
+
+    // اختيار الطبق بالضغط عليه
+    document.querySelectorAll('.menu-item').forEach(item => {
+      item.addEventListener('click', function() {
+        // إزالة التحديد من جميع الأطباق
+        document.querySelectorAll('.menu-item').forEach(i => {
+          i.classList.remove('selected');
+        });
+        
+        // إضافة التحديد للطبق المختار
+        this.classList.add('selected');
+        
+        // حفظ الطبق المختار
+        selectedItem = {
+          plat: this.getAttribute('data-plat'),
+          prix: parseInt(this.getAttribute('data-prix'))
+        };
+        
+        // عرض الطبق المختار
+        document.getElementById('selected-item').style.display = 'block';
+        document.getElementById('selected-item-name').textContent = selectedItem.plat;
+        document.getElementById('selected-item-price').textContent = selectedItem.prix;
+      });
+    });
 
     // إضافة طبق إلى الطلب
     document.getElementById('ajouterPlat').addEventListener('click', function() {
-      const plat = document.getElementById('plat').value;
       const quantite = parseInt(document.getElementById('quantite').value);
       
-      if (!plat || quantite < 1) {
-        alert('الرجاء اختيار طبق وكمية صحيحة');
+      if (!selectedItem || quantite < 1) {
+        alert('الرجاء اختيار طبق وتحديد كمية صحيحة');
         return;
       }
       
       // إضافة إلى قائمة الطلبات
       commandes.push({
-        plat: plat,
+        plat: selectedItem.plat,
         quantite: quantite,
-        prix: prixPlats[plat]
+        prix: selectedItem.prix
       });
       
       // تحديث العرض
       afficherCommandes();
       
       // إعادة تعيين الحقول
-      document.getElementById('plat').value = '';
       document.getElementById('quantite').value = '1';
+      document.querySelector('.selected').classList.remove('selected');
+      document.getElementById('selected-item').style.display = 'none';
+      selectedItem = null;
     });
 
     // عرض قائمة الطلبات
@@ -652,7 +464,7 @@
       });
       
       // تحديث المجموع الكلي
-      document.getElementById('totalCommande').innerHTML = `<i class="fas fa-coins"></i> المجموع: ${total} درهم`;
+      document.getElementById('totalCommande').textContent = `المجموع: ${total} درهم`;
       
       // إضافة أحداث لحذف الأصناف
       document.querySelectorAll('.remove-item').forEach(btn => {
@@ -686,12 +498,7 @@
       
       // عرض رسالة التأكيد
       const confirmation = document.getElementById('confirmation');
-      confirmation.innerHTML = `
-        <i class="fas fa-check-circle" style="font-size: 2rem; color: #155724;"></i>
-        <p>تم تأكيد الطلب للطاولة ${table}!</p>
-        <p>المجموع: ${total} درهم</p>
-        <p style="font-style: italic;">شكراً لاختياركم دار حسنا</p>
-      `;
+      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم`;
       confirmation.style.display = 'block';
       
       // إعادة تعيين النموذج
