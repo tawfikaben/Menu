@@ -3,75 +3,127 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>قائمة الطعام - دار حسنا</title>
+  <title>دار حسنا - مطعم مغربي أصيل</title>
   <!-- خطوط عربية -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;600&display=swap" rel="stylesheet">
   <!-- أيقونات زخرفية -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* أنماط مغربية شعبية */
+    /* أنماط مغربية شعبية أصيلة */
+    :root {
+      --color-primary: #9c2e2e; /* أحمر مغربي */
+      --color-secondary: #e67e22; /* برتقالي مغربي */
+      --color-accent: #daa520; /* ذهبي تقليدي */
+      --color-text: #5d4037; /* بني خشبي */
+      --color-light: #f8f1e9; /* كريمي */
+    }
+    
     body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: #f8f1e9;
-      background-image: url('https://www.transparenttextures.com/patterns/morocco.png');
-      color: #5d4037;
+      font-family: 'Lateef', cursive;
+      background-color: var(--color-light);
+      background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/morocco-blue.png');
+      color: var(--color-text);
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      font-size: 1.2rem;
+      line-height: 1.6;
     }
     
     .container {
-      max-width: 800px;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.95);
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.9);
       padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.15);
-      border: 3px solid #a52a2a;
+      border-radius: 5px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      border: 3px solid var(--color-primary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .container:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 10px;
+      background: linear-gradient(90deg, var(--color-primary), var(--color-secondary), var(--color-accent));
     }
     
     /* عناوين مغربية */
     h1, h2, h3 {
-      color: #a52a2a;
+      color: var(--color-primary);
       text-align: center;
       text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-family: 'Amiri', serif;
     }
     
     h1 {
-      margin-bottom: 10px;
-      font-size: 2.8em;
-      letter-spacing: 1px;
+      margin: 10px 0;
+      font-size: 3.5rem;
       font-weight: 700;
+      letter-spacing: 2px;
+      position: relative;
+      padding-bottom: 15px;
+    }
+    
+    h1:after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 35%;
+      width: 30%;
+      height: 3px;
+      background: linear-gradient(to left, transparent, var(--color-primary), transparent);
     }
     
     .subtitle {
       text-align: center;
-      color: #7f8c8d;
+      color: var(--color-text);
       margin-bottom: 30px;
-      font-size: 1.3em;
+      font-size: 1.8rem;
       position: relative;
+      font-style: italic;
     }
     
     .subtitle:before, .subtitle:after {
-      content: "✻";
-      color: #d35400;
-      margin: 0 10px;
+      content: "❁";
+      color: var(--color-secondary);
+      margin: 0 15px;
+      font-size: 1.5rem;
     }
     
     /* بطاقات الأصناف */
     .menu-section {
       margin-bottom: 40px;
       background-color: rgba(255, 248, 240, 0.7);
-      padding: 20px;
-      border-radius: 10px;
-      border: 1px dashed #d35400;
+      padding: 25px;
+      border-radius: 5px;
+      border: 2px dashed var(--color-secondary);
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .menu-section:before {
+      content: "";
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      border: 1px solid rgba(156, 46, 46, 0.1);
+      border-radius: 3px;
+      pointer-events: none;
     }
     
     .menu-section h3 {
       position: relative;
       padding-bottom: 15px;
-      margin-bottom: 25px;
-      color: #5d4037;
-      font-size: 1.5em;
+      margin-bottom: 30px;
+      color: var(--color-primary);
+      font-size: 2.2rem;
+      font-weight: 600;
     }
     
     .menu-section h3:after {
@@ -81,162 +133,288 @@
       right: 30%;
       width: 40%;
       height: 2px;
-      background: linear-gradient(to left, transparent, #d35400, transparent);
+      background: linear-gradient(to left, transparent, var(--color-secondary), transparent);
     }
     
     .menu-item {
       display: flex;
       justify-content: space-between;
-      margin-bottom: 20px;
-      padding-bottom: 15px;
-      border-bottom: 1px dotted #d35400;
-      transition: all 0.3s;
+      margin-bottom: 25px;
+      padding-bottom: 20px;
+      border-bottom: 1px dotted var(--color-secondary);
+      transition: all 0.3s ease;
+      align-items: center;
     }
     
     .menu-item:hover {
-      transform: translateX(-5px);
+      transform: translateX(-10px);
+      background-color: rgba(255, 248, 240, 0.9);
+      padding: 15px;
+      border-radius: 5px;
     }
     
     .item-name {
       font-weight: bold;
-      color: #5d4037;
-      font-size: 1.2em;
+      color: var(--color-primary);
+      font-size: 1.5rem;
+      flex: 1;
     }
     
     .item-price {
-      color: #a52a2a;
+      color: var(--color-primary);
       font-weight: bold;
-      font-size: 1.2em;
-      min-width: 80px;
+      font-size: 1.5rem;
+      min-width: 100px;
       text-align: left;
+      background-color: rgba(156, 46, 46, 0.1);
+      padding: 5px 10px;
+      border-radius: 5px;
     }
     
     .item-desc {
-      font-size: 1em;
-      color: #7f8c8d;
-      margin-top: 8px;
+      font-size: 1.2rem;
+      color: var(--color-text);
+      margin-top: 10px;
+      font-style: italic;
+      flex-basis: 100%;
     }
     
     /* النموذج */
     form {
-      background-color: rgba(249, 249, 249, 0.9);
-      padding: 25px;
-      border-radius: 10px;
+      background-color: rgba(255, 248, 240, 0.9);
+      padding: 30px;
+      border-radius: 5px;
       margin-top: 40px;
-      border: 2px solid #a52a2a;
-      background-image: linear-gradient(to bottom, #fff8f0, #f9f9f9);
+      border: 2px solid var(--color-primary);
+      position: relative;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    form:before {
+      content: "";
+      position: absolute;
+      top: 5px;
+      left: 5px;
+      right: 5px;
+      bottom: 5px;
+      border: 1px dashed var(--color-secondary);
+      border-radius: 3px;
+      pointer-events: none;
     }
     
     label {
       display: block;
-      margin: 20px 0 10px;
+      margin: 25px 0 15px;
       font-weight: bold;
-      color: #5d4037;
+      color: var(--color-primary);
+      font-size: 1.3rem;
     }
     
     input, select {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 16px;
-      font-family: 'Tajawal', sans-serif;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-family: 'Lateef', cursive;
       background-color: rgba(255,255,255,0.8);
+      transition: all 0.3s;
+    }
+    
+    input:focus, select:focus {
+      border-color: var(--color-secondary);
+      box-shadow: 0 0 5px rgba(230, 126, 34, 0.5);
+      outline: none;
     }
     
     button {
-      background-color: #a52a2a;
+      background-color: var(--color-primary);
       color: white;
       border: none;
-      padding: 15px;
-      margin-top: 25px;
-      border-radius: 6px;
+      padding: 18px;
+      margin-top: 30px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 18px;
+      font-size: 1.5rem;
       width: 100%;
       transition: all 0.3s;
       font-weight: bold;
-      font-family: 'Tajawal', sans-serif;
+      font-family: 'Amiri', serif;
+      letter-spacing: 1px;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    
+    button:before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+      transition: 0.5s;
+      z-index: -1;
     }
     
     button:hover {
-      background-color: #d35400;
-      transform: translateY(-2px);
-      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+      background-color: var(--color-secondary);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    button:hover:before {
+      left: 100%;
     }
     
     .confirmation {
       display: none;
-      background-color: #d4edda;
+      background-color: rgba(212, 237, 218, 0.9);
       color: #155724;
-      padding: 15px;
-      border-radius: 6px;
-      margin-top: 20px;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 25px;
       text-align: center;
       border: 1px solid #c3e6cb;
+      font-size: 1.3rem;
     }
     
     .commande-item {
-      background-color: rgba(240, 240, 240, 0.8);
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
+      background-color: rgba(240, 240, 240, 0.9);
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
       display: flex;
       justify-content: space-between;
-      border-right: 3px solid #d35400;
+      align-items: center;
+      border-right: 4px solid var(--color-secondary);
+      transition: all 0.3s;
+    }
+    
+    .commande-item:hover {
+      transform: scale(1.02);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     
     .remove-item {
-      color: #a52a2a;
+      color: var(--color-primary);
       cursor: pointer;
       font-weight: bold;
-      margin-right: 10px;
+      margin-right: 15px;
+      font-size: 1.5rem;
+      transition: all 0.3s;
+    }
+    
+    .remove-item:hover {
+      color: var(--color-secondary);
+      transform: scale(1.2);
     }
     
     #listeCommandes {
-      margin-top: 25px;
+      margin-top: 30px;
     }
     
     .total {
       font-weight: bold;
       text-align: left;
-      margin-top: 15px;
-      font-size: 1.3em;
-      color: #a52a2a;
+      margin-top: 20px;
+      font-size: 1.8rem;
+      color: var(--color-primary);
+      padding: 10px;
+      background-color: rgba(156, 46, 46, 0.1);
+      border-radius: 5px;
     }
     
     /* زخارف مغربية */
     .moroccan-decoration {
       text-align: center;
-      margin: 20px 0;
-      color: #d35400;
-      font-size: 1.5em;
-      letter-spacing: 10px;
+      margin: 30px 0;
+      color: var(--color-secondary);
+      font-size: 2rem;
+      letter-spacing: 15px;
+    }
+    
+    /* رأس الصفحة */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      position: relative;
+    }
+    
+    .header-logo {
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      background-color: var(--color-primary);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 2.5rem;
+      border: 3px solid var(--color-accent);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    /* تذييل الصفحة */
+    .footer {
+      text-align: center;
+      margin-top: 50px;
+      padding: 20px;
+      color: var(--color-text);
+      font-size: 1.1rem;
+      border-top: 1px dashed var(--color-secondary);
     }
     
     @media (max-width: 768px) {
       .container {
         padding: 15px;
+        margin: 10px;
       }
       
       h1 {
-        font-size: 2em;
+        font-size: 2.5rem;
+      }
+      
+      .subtitle {
+        font-size: 1.4rem;
+      }
+      
+      .menu-section {
+        padding: 15px;
+      }
+      
+      .menu-item {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      
+      .item-price {
+        margin-top: 10px;
+        align-self: flex-end;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
+    <!-- رأس الصفحة -->
+    <div class="header">
+      <div class="header-logo">
+        <i class="fas fa-utensils"></i>
+      </div>
+      <h1>دار حســـنا</h1>
+      <p class="subtitle">مطعم مغربي أصيل منذ 1985</p>
+    </div>
+    
     <!-- زخرفة علوية -->
-    <div class="moroccan-decoration">✻ ✽ ✻ ✽ ✻</div>
+    <div class="moroccan-decoration">✻ ❁ ✻ ❁ ✻</div>
     
-    <h1>دار حسنا</h1>
-    <p class="subtitle">مطبخ مغربي أصيل منذ 1985</p>
-    
-    <h2>قائمتنا الشهية</h2>
+    <h2>قائمتنا الشعبية</h2>
     
     <div class="menu-section">
-      <h3>الأطباق الرئيسية</h3>
+      <h3><i class="fas fa-drumstick-bite"></i> الأطباق الرئيسية</h3>
       
       <div class="menu-item">
         <div>
@@ -272,7 +450,7 @@
     </div>
     
     <div class="menu-section">
-      <h3>المقبلات والشوربات</h3>
+      <h3><i class="fas fa-egg"></i> المقبلات والشوربات</h3>
       
       <div class="menu-item">
         <div>
@@ -300,7 +478,7 @@
     </div>
     
     <div class="menu-section">
-      <h3>الحلويات والمشروبات</h3>
+      <h3><i class="fas fa-mug-hot"></i> الحلويات والمشروبات</h3>
       
       <div class="menu-item">
         <div>
@@ -328,15 +506,15 @@
     </div>
     
     <!-- زخرفة سفلية -->
-    <div class="moroccan-decoration">✽ ✻ ✽ ✻ ✽</div>
+    <div class="moroccan-decoration">❁ ✻ ❁ ✻ ❁</div>
     
     <form id="commandeForm">
-      <h2>تقديم الطلب</h2>
+      <h2><i class="fas fa-clipboard-list"></i> تقديم الطلب</h2>
       
-      <label for="table">رقم الطاولة:</label>
+      <label for="table"><i class="fas fa-chair"></i> رقم الطاولة:</label>
       <input type="number" id="table" min="1" required>
       
-      <label for="plat">اختر طبقك:</label>
+      <label for="plat"><i class="fas fa-utensil-spoon"></i> اختر طبقك:</label>
       <select id="plat">
         <option value="">-- اختر من القائمة --</option>
         <option value="الكسكس بالخضار واللحم">الكسكس بالخضار واللحم - 85 درهم</option>
@@ -351,7 +529,7 @@
         <option value="الشاي المغربي">الشاي المغربي - 20 درهم</option>
       </select>
       
-      <label for="quantite">الكمية:</label>
+      <label for="quantite"><i class="fas fa-calculator"></i> الكمية:</label>
       <input type="number" id="quantite" min="1" value="1">
       
       <button type="button" id="ajouterPlat">
@@ -360,7 +538,9 @@
       
       <div id="listeCommandes"></div>
       
-      <div class="total" id="totalCommande">المجموع: 0 درهم</div>
+      <div class="total" id="totalCommande">
+        <i class="fas fa-coins"></i> المجموع: 0 درهم
+      </div>
       
       <button type="submit">
         <i class="fas fa-check-circle"></i> تأكيد الطلب
@@ -368,6 +548,21 @@
       
       <div id="confirmation" class="confirmation"></div>
     </form>
+    
+    <!-- تذييل الصفحة -->
+    <div class="footer">
+      <p>دار حسنا © 2023 - جميع الحقوق محفوظة</p>
+      <p>
+        <i class="fas fa-map-marker-alt"></i> شارع علال بن عبد الله، مراكش
+        <br>
+        <i class="fas fa-phone"></i> 0524-442233
+      </p>
+      <div style="margin-top: 15px; font-size: 1.5rem;">
+        <i class="fab fa-facebook" style="color: #3b5998; margin: 0 10px;"></i>
+        <i class="fab fa-instagram" style="color: #e4405f; margin: 0 10px;"></i>
+        <i class="fab fa-tripadvisor" style="color: #00af87; margin: 0 10px;"></i>
+      </div>
+    </div>
   </div>
 
   <!-- Firebase SDK -->
@@ -457,7 +652,7 @@
       });
       
       // تحديث المجموع الكلي
-      document.getElementById('totalCommande').textContent = `المجموع: ${total} درهم`;
+      document.getElementById('totalCommande').innerHTML = `<i class="fas fa-coins"></i> المجموع: ${total} درهم`;
       
       // إضافة أحداث لحذف الأصناف
       document.querySelectorAll('.remove-item').forEach(btn => {
@@ -491,7 +686,12 @@
       
       // عرض رسالة التأكيد
       const confirmation = document.getElementById('confirmation');
-      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم`;
+      confirmation.innerHTML = `
+        <i class="fas fa-check-circle" style="font-size: 2rem; color: #155724;"></i>
+        <p>تم تأكيد الطلب للطاولة ${table}!</p>
+        <p>المجموع: ${total} درهم</p>
+        <p style="font-style: italic;">شكراً لاختياركم دار حسنا</p>
+      `;
       confirmation.style.display = 'block';
       
       // إعادة تعيين النموذج
