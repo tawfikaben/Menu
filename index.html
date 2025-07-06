@@ -2,14 +2,14 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>دار حسنا - مطعم مغربي أصيل</title>
   <!-- خطوط عربية -->
-  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Lateef:wght@400;600&display=swap" rel="stylesheet">
   <!-- أيقونات زخرفية -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   <style>
-    /* أنماط مغربية شعبية متجاوبة */
+    /* أنماط مغربية شعبية أصيلة */
     :root {
       --color-primary: #9c2e2e; /* أحمر مغربي */
       --color-secondary: #e67e22; /* برتقالي مغربي */
@@ -18,297 +18,263 @@
       --color-light: #f8f1e9; /* كريمي */
     }
     
-    * {
-      box-sizing: border-box;
+    body {
+      font-family: 'Lateef', cursive;
+      background-color: var(--color-light);
+      background-image: url('https://www.toptal.com/designers/subtlepatterns/uploads/morocco-blue.png');
+      color: var(--color-text);
       margin: 0;
       padding: 0;
-    }
-    
-    body {
-      font-family: 'Tajawal', sans-serif;
-      background-color: var(--color-light);
-      background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%239c2e2e" width="25" height="25" x="0" y="0"/><rect fill="%23e67e22" width="25" height="25" x="25" y="0"/><rect fill="%23daa520" width="25" height="25" x="50" y="0"/><rect fill="%239c2e2e" width="25" height="25" x="75" y="0"/><rect fill="%23e67e22" width="25" height="25" x="0" y="25"/><rect fill="%23daa520" width="25" height="25" x="25" y="25"/><rect fill="%239c2e2e" width="25" height="25" x="50" y="25"/><rect fill="%23e67e22" width="25" height="25" x="75" y="25"/><rect fill="%23daa520" width="25" height="25" x="0" y="50"/><rect fill="%239c2e2e" width="25" height="25" x="25" y="50"/><rect fill="%23e67e22" width="25" height="25" x="50" y="50"/><rect fill="%23daa520" width="25" height="25" x="75" y="50"/><rect fill="%239c2e2e" width="25" height="25" x="0" y="75"/><rect fill="%23e67e22" width="25" height="25" x="25" y="75"/><rect fill="%23daa520" width="25" height="25" x="50" y="75"/><rect fill="%239c2e2e" width="25" height="25" x="75" y="75"/></svg>');
-      background-size: 150px;
-      background-attachment: fixed;
-      color: var(--color-text);
-      font-size: 16px;
+      font-size: 1.2rem;
       line-height: 1.6;
-      padding: 10px;
-      -webkit-text-size-adjust: 100%;
     }
     
     .container {
-      width: 100%;
-      max-width: 100%;
-      margin: 0 auto;
-      background-color: rgba(255, 255, 255, 0.95);
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 0 15px rgba(0,0,0,0.1);
-      border: 2px solid var(--color-primary);
+      max-width: 900px;
+      margin: 20px auto;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 5px;
+      box-shadow: 0 0 30px rgba(0,0,0,0.2);
+      border: 3px solid var(--color-primary);
+      position: relative;
+      overflow: hidden;
     }
     
     /* عناوين مغربية */
     h1, h2, h3 {
       color: var(--color-primary);
       text-align: center;
-      font-weight: 700;
-      margin: 15px 0;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+      font-family: 'Amiri', serif;
     }
     
     h1 {
-      font-size: 2rem;
-      margin: 10px 0 5px;
+      margin: 10px 0;
+      font-size: 3.5rem;
+      font-weight: 700;
+      letter-spacing: 2px;
     }
     
     .subtitle {
       text-align: center;
       color: var(--color-text);
-      margin-bottom: 20px;
-      font-size: 1.1rem;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+      position: relative;
+      font-style: italic;
     }
     
     /* بطاقات الأصناف */
     .menu-section {
-      margin-bottom: 25px;
-      background-color: rgba(255, 248, 240, 0.8);
-      padding: 15px;
-      border-radius: 8px;
-      border: 1px dashed var(--color-secondary);
+      margin-bottom: 40px;
+      background-color: rgba(255, 248, 240, 0.7);
+      padding: 25px;
+      border-radius: 5px;
+      border: 2px dashed var(--color-secondary);
     }
     
     .menu-section h3 {
-      font-size: 1.3rem;
-      padding-bottom: 10px;
-      margin-bottom: 15px;
-      border-bottom: 1px solid rgba(156, 46, 46, 0.2);
+      position: relative;
+      padding-bottom: 15px;
+      margin-bottom: 30px;
+      color: var(--color-primary);
+      font-size: 2.2rem;
     }
     
     .menu-item {
       display: flex;
-      flex-direction: column;
-      margin-bottom: 15px;
-      padding: 12px;
-      border-radius: 6px;
-      background-color: rgba(255, 255, 255, 0.7);
-      border: 1px solid rgba(156, 46, 46, 0.1);
+      justify-content: space-between;
+      margin-bottom: 25px;
+      padding: 15px;
+      border-radius: 5px;
+      transition: all 0.3s;
       cursor: pointer;
-      transition: all 0.2s;
+      border: 1px solid transparent;
+    }
+    
+    .menu-item:hover {
+      transform: translateX(-10px);
+      background-color: rgba(255, 248, 240, 0.9);
+      border: 1px solid var(--color-secondary);
+      box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
     
     .menu-item.selected {
       background-color: rgba(156, 46, 46, 0.1);
       border: 1px solid var(--color-primary);
-    }
-    
-    .menu-item:active {
-      transform: scale(0.98);
-    }
-    
-    .item-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 100%;
+      transform: translateX(-10px);
     }
     
     .item-name {
       font-weight: bold;
       color: var(--color-primary);
-      font-size: 1.1rem;
-      flex: 1;
+      font-size: 1.5rem;
     }
     
     .item-price {
       color: var(--color-primary);
       font-weight: bold;
-      font-size: 1.1rem;
-      background-color: rgba(156, 46, 46, 0.1);
-      padding: 3px 8px;
-      border-radius: 4px;
+      font-size: 1.5rem;
     }
     
     .item-desc {
-      font-size: 0.9rem;
+      font-size: 1.2rem;
       color: var(--color-text);
       margin-top: 8px;
     }
     
     /* النموذج */
     form {
-      background-color: rgba(255, 248, 240, 0.8);
-      padding: 15px;
-      border-radius: 8px;
-      margin-top: 20px;
-      border: 1px solid var(--color-primary);
+      background-color: rgba(255, 248, 240, 0.9);
+      padding: 30px;
+      border-radius: 5px;
+      margin-top: 40px;
+      border: 2px solid var(--color-primary);
     }
     
     label {
       display: block;
-      margin: 15px 0 8px;
+      margin: 20px 0 10px;
       font-weight: bold;
       color: var(--color-primary);
-      font-size: 1rem;
+      font-size: 1.3rem;
     }
     
     input, select {
       width: 100%;
-      padding: 12px;
+      padding: 15px;
       border: 1px solid #ddd;
-      border-radius: 6px;
-      font-size: 1rem;
-      font-family: 'Tajawal', sans-serif;
-      background-color: white;
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-family: 'Lateef', cursive;
     }
     
     button {
       background-color: var(--color-primary);
       color: white;
       border: none;
-      padding: 15px;
-      margin-top: 20px;
-      border-radius: 6px;
+      padding: 18px;
+      margin-top: 30px;
+      border-radius: 5px;
       cursor: pointer;
-      font-size: 1.1rem;
+      font-size: 1.5rem;
       width: 100%;
+      transition: all 0.3s;
       font-weight: bold;
-      transition: background-color 0.2s;
+      font-family: 'Amiri', serif;
     }
     
-    button:active {
+    button:hover {
       background-color: var(--color-secondary);
-      transform: scale(0.98);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
     }
     
     .confirmation {
       display: none;
       background-color: rgba(212, 237, 218, 0.9);
       color: #155724;
-      padding: 15px;
-      border-radius: 6px;
-      margin-top: 15px;
+      padding: 20px;
+      border-radius: 5px;
+      margin-top: 25px;
       text-align: center;
-      font-size: 1rem;
+      border: 1px solid #c3e6cb;
+      font-size: 1.3rem;
     }
     
     .commande-item {
       background-color: rgba(240, 240, 240, 0.9);
-      padding: 12px;
-      margin-bottom: 12px;
-      border-radius: 6px;
+      padding: 15px;
+      margin-bottom: 15px;
+      border-radius: 5px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      border-right: 3px solid var(--color-secondary);
-      font-size: 1rem;
+      border-right: 4px solid var(--color-secondary);
     }
     
     .remove-item {
       color: var(--color-primary);
       cursor: pointer;
       font-weight: bold;
-      margin-right: 10px;
-      font-size: 1.2rem;
+      margin-right: 15px;
+      font-size: 1.5rem;
     }
     
     #listeCommandes {
-      margin-top: 15px;
+      margin-top: 30px;
     }
     
     .total {
       font-weight: bold;
       text-align: left;
-      margin-top: 15px;
-      font-size: 1.2rem;
+      margin-top: 20px;
+      font-size: 1.8rem;
       color: var(--color-primary);
     }
     
-    #selected-item {
-      margin: 15px 0;
-      padding: 12px;
-      background-color: rgba(156, 46, 46, 0.1);
-      border-radius: 6px;
-      display: none;
-      font-size: 1rem;
-    }
-    
-    /* تذييل الصفحة */
-    .footer {
+    /* زخارف مغربية */
+    .moroccan-decoration {
       text-align: center;
-      margin-top: 30px;
-      padding: 15px;
-      font-size: 0.9rem;
-      color: var(--color-text);
+      margin: 30px 0;
+      color: var(--color-secondary);
+      font-size: 2rem;
+      letter-spacing: 15px;
     }
     
-    .social-icons {
-      margin-top: 10px;
-    }
-    
-    .social-icons a {
-      color: var(--color-primary);
-      margin: 0 8px;
-      font-size: 1.2rem;
-    }
-    
-    /* تحسينات للشاشات الكبيرة */
-    @media (min-width: 768px) {
-      body {
-        padding: 20px;
-      }
-      
+    @media (max-width: 768px) {
       .container {
-        max-width: 600px;
-        padding: 25px;
+        padding: 15px;
       }
       
       h1 {
         font-size: 2.5rem;
-      }
-      
-      .menu-item {
-        flex-direction: row;
-        flex-wrap: wrap;
-      }
-      
-      .item-desc {
-        flex-basis: 100%;
       }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1>دار حسنا</h1>
-    <p class="subtitle">مطبخ مغربي أصيل</p>
+    <div class="moroccan-decoration">✻ ❁ ✻ ❁ ✻</div>
     
-    <h2>قائمتنا الشعبية</h2>
+    <h1>دار حسنا</h1>
+    <p class="subtitle">مطبخ مغربي أصيل منذ 1985</p>
+    
+    <h2>قائمتنا الشهية</h2>
     
     <div class="menu-section">
       <h3>الأطباق الرئيسية</h3>
       
       <div class="menu-item" data-plat="الكسكس بالخضار واللحم" data-prix="85">
-        <div class="item-row">
+        <div>
           <div class="item-name">الكسكس بالخضار واللحم</div>
-          <div class="item-price">85 درهم</div>
+          <div class="item-desc">سميد مع الخضار الموسمية واللحم الطري مع مرق خاص</div>
         </div>
-        <div class="item-desc">سميد مع الخضار الموسمية واللحم الطري مع مرق خاص</div>
+        <div class="item-price">85 درهم</div>
       </div>
       
       <div class="menu-item" data-plat="الطاجين بالزيتون والليمون" data-prix="75">
-        <div class="item-row">
+        <div>
           <div class="item-name">الطاجين بالزيتون والليمون</div>
-          <div class="item-price">75 درهم</div>
+          <div class="item-desc">دجاج مطهو بزيت الزيتون مع الزيتون والليمون المحفوظ</div>
         </div>
-        <div class="item-desc">دجاج مطهو بزيت الزيتون مع الزيتون والليمون المحفوظ</div>
+        <div class="item-price">75 درهم</div>
       </div>
       
       <div class="menu-item" data-plat="البسطيلة المغربية" data-prix="90">
-        <div class="item-row">
+        <div>
           <div class="item-name">البسطيلة المغربية</div>
-          <div class="item-price">90 درهم</div>
+          <div class="item-desc">ورق البسطيلة المحشو بلحم الحمام واللوز والتوابل</div>
         </div>
-        <div class="item-desc">ورق البسطيلة المحشو بلحم الحمام واللوز والتوابل</div>
+        <div class="item-price">90 درهم</div>
+      </div>
+      
+      <div class="menu-item" data-plat="المشوي" data-prix="120">
+        <div>
+          <div class="item-name">المشوي</div>
+          <div class="item-desc">لحم ضأن مشوي على الفحم بطريقة تقليدية</div>
+        </div>
+        <div class="item-price">120 درهم</div>
       </div>
     </div>
     
@@ -316,19 +282,27 @@
       <h3>المقبلات والشوربات</h3>
       
       <div class="menu-item" data-plat="الحريرة المغربية" data-prix="35">
-        <div class="item-row">
+        <div>
           <div class="item-name">الحريرة المغربية</div>
-          <div class="item-price">35 درهم</div>
+          <div class="item-desc">شوربة العدس بالحمص واللحم والتوابل</div>
         </div>
-        <div class="item-desc">شوربة العدس بالحمص واللحم والتوابل</div>
+        <div class="item-price">35 درهم</div>
       </div>
       
       <div class="menu-item" data-plat="البريوات" data-prix="45">
-        <div class="item-row">
+        <div>
           <div class="item-name">البريوات</div>
-          <div class="item-price">45 درهم</div>
+          <div class="item-desc">ورق البريوات المحشو باللحم المفروم أو الجبن</div>
         </div>
-        <div class="item-desc">ورق البريوات المحشو باللحم المفروم أو الجبن</div>
+        <div class="item-price">45 درهم</div>
+      </div>
+      
+      <div class="menu-item" data-plat="السلطة المغربية" data-prix="40">
+        <div>
+          <div class="item-name">السلطة المغربية</div>
+          <div class="item-desc">خضروات طازجة مع الكزبرة والليمون</div>
+        </div>
+        <div class="item-price">40 درهم</div>
       </div>
     </div>
     
@@ -336,21 +310,31 @@
       <h3>الحلويات والمشروبات</h3>
       
       <div class="menu-item" data-plat="البقلاوة" data-prix="30">
-        <div class="item-row">
+        <div>
           <div class="item-name">البقلاوة</div>
-          <div class="item-price">30 درهم</div>
+          <div class="item-desc">حلوة مكونة من طبقات عجين محشوة باللوز والعسل</div>
         </div>
-        <div class="item-desc">حلوة مكونة من طبقات عجين محشوة باللوز والعسل</div>
+        <div class="item-price">30 درهم</div>
+      </div>
+      
+      <div class="menu-item" data-plat="المحنشة" data-prix="35">
+        <div>
+          <div class="item-name">المحنشة</div>
+          <div class="item-desc">حلوة على شكل ثعبان محشوة بمعجون اللوز</div>
+        </div>
+        <div class="item-price">35 درهم</div>
       </div>
       
       <div class="menu-item" data-plat="الشاي المغربي" data-prix="20">
-        <div class="item-row">
+        <div>
           <div class="item-name">الشاي المغربي</div>
-          <div class="item-price">20 درهم</div>
+          <div class="item-desc">شاي أخضر مع النعناع الطازج والسكر</div>
         </div>
-        <div class="item-desc">شاي أخضر مع النعناع الطازج والسكر</div>
+        <div class="item-price">20 درهم</div>
       </div>
     </div>
+    
+    <div class="moroccan-decoration">❁ ✻ ❁ ✻ ❁</div>
     
     <form id="commandeForm">
       <h2>تقديم الطلب</h2>
@@ -358,12 +342,12 @@
       <label for="table">رقم الطاولة:</label>
       <input type="number" id="table" min="1" required>
       
-      <div id="selected-item">
-        <strong>الطبق المحدد:</strong> <span id="selected-item-name"></span> (<span id="selected-item-price"></span> درهم)
-      </div>
-      
       <label for="quantite">الكمية:</label>
       <input type="number" id="quantite" min="1" value="1">
+      
+      <div id="selected-item" style="margin: 20px 0; padding: 15px; background-color: rgba(156, 46, 46, 0.1); border-radius: 5px; display: none;">
+        <strong>الطبق المحدد:</strong> <span id="selected-item-name"></span> (<span id="selected-item-price"></span> درهم)
+      </div>
       
       <button type="button" id="ajouterPlat">
         إضافة إلى الطلب
@@ -379,20 +363,28 @@
       
       <div id="confirmation" class="confirmation"></div>
     </form>
-    
-    <div class="footer">
-      <p>دار حسنا © 2023</p>
-      <p>شارع علال بن عبد الله، مراكش</p>
-      <p>الهاتف: 0524-442233</p>
-      <div class="social-icons">
-        <a href="#"><i class="fab fa-facebook"></i></a>
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
   </div>
 
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+
   <script>
+    // Configuration Firebase
+    const firebaseConfig = {
+      apiKey: "AIzaSyDpSF4J0bsd6T0ImMpse0KQQRADaxiYUQw",
+      authDomain: "darhassna-484c3.firebaseapp.com",
+      databaseURL: "https://darhassna-484c3-default-rtdb.europe-west1.firebasedatabase.app",
+      projectId: "darhassna-484c3",
+      storageBucket: "darhassna-484c3.firebasestorage.app",
+      messagingSenderId: "141393162149",
+      appId: "1:141393162149:web:0717227eac221f5ddfc24c"
+    };
+
+    // Initialiser Firebase
+    firebase.initializeApp(firebaseConfig);
+    const database = firebase.database();
+
     // متغيرات لتخزين الطلبات
     let commandes = [];
     let total = 0;
@@ -495,15 +487,18 @@
         return;
       }
       
-      // هنا يمكنك إضافة كود إرسال الطلب إلى الخادم
+      // إرسال البيانات إلى Firebase
+      database.ref('commandes').push({
+        table: table,
+        commandes: commandes,
+        total: total,
+        timestamp: firebase.database.ServerValue.TIMESTAMP,
+        statut: 'في الانتظار'
+      });
       
       // عرض رسالة التأكيد
       const confirmation = document.getElementById('confirmation');
-      confirmation.innerHTML = `
-        <p>تم تأكيد الطلب للطاولة ${table}!</p>
-        <p>المجموع: ${total} درهم</p>
-        <p>شكراً لاختياركم دار حسنا</p>
-      `;
+      confirmation.textContent = `تم تأكيد الطلب للطاولة ${table}! المجموع: ${total} درهم`;
       confirmation.style.display = 'block';
       
       // إعادة تعيين النموذج
