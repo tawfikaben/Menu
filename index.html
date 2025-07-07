@@ -237,7 +237,12 @@
       text-align: left;
     }
 
-    /* سلة التسوق العائمة */
+    /* المسافة تحت الحلويات والمشروبات */
+    .after-desserts {
+      height: 20px;
+    }
+
+    /* شريط السلة العائم المعدل */
     .cart-floating {
       position: fixed;
       bottom: 80px;
@@ -444,6 +449,66 @@
       margin-bottom: 1rem;
     }
 
+    /* الفوتر المعدل */
+    footer {
+      background: var(--dark);
+      color: var(--white);
+      padding: 2rem 1rem;
+      text-align: center;
+    }
+
+    .footer-info {
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+
+    .footer-address {
+      margin: 1rem 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-address i {
+      margin-left: 0.5rem;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .social-link {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 0.5rem;
+      color: var(--white);
+      transition: var(--transition);
+    }
+
+    .social-link:hover {
+      background: var(--primary);
+    }
+
+    .copyright {
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
     /* تأثيرات للشاشات الكبيرة */
     @media (min-width: 768px) {
       .mobile-nav {
@@ -490,10 +555,13 @@
         <!-- سيتم تعبئة القائمة ديناميكياً هنا -->
         <div class="loading">جاري تحميل القائمة...</div>
       </div>
+
+      <!-- المسافة المطلوبة تحت الحلويات والمشروبات -->
+      <div class="after-desserts" id="afterDesserts"></div>
     </div>
   </section>
 
-  <!-- سلة التسوق العائمة -->
+  <!-- شريط السلة العائم -->
   <div class="cart-floating" id="cartFloating">
     <div class="cart-info">
       <div class="cart-icon">
@@ -552,6 +620,30 @@
     </button>
   </div>
 
+  <!-- الفوتر مع معلومات المطعم -->
+  <footer>
+    <div class="container">
+      <div class="footer-info">
+        <div class="footer-logo">دار حسنا</div>
+        <p>مطعم مغربي أصيل منذ 1985</p>
+        <div class="footer-address">
+          <i class="fas fa-map-marker-alt"></i>
+          <span>شارع المختار السوسي، بيوگرى
+        </div>
+      </div>
+      
+      <div class="social-links">
+        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-instagram"></i></a>
+        <a href="#" class="social-link"><i class="fab fa-whatsapp"></i></a>
+      </div>
+      
+      <div class="copyright">
+        © 2023 جميع الحقوق محفوظة لدار حسنا
+      </div>
+    </div>
+  </footer>
+
   <!-- شريط التنقل للجوال -->
   <nav class="mobile-nav">
     <a href="#" class="nav-item active">
@@ -595,6 +687,7 @@
     // متغيرات لتخزين الطلبات
     let commandes = [];
     let total = 0;
+    let cartTimeout;
 
     // عناصر DOM
     const cartFloating = document.getElementById('cartFloating');
@@ -607,6 +700,7 @@
     const confirmation = document.getElementById('confirmation');
     const confirmationText = document.getElementById('confirmationText');
     const closeConfirmationBtn = document.getElementById('closeConfirmation');
+    const afterDesserts = document.getElementById('afterDesserts');
 
     // دالة لعرض تاريخ اليوم بالأرقام الفرنسية
     function displayTodayDate() {
@@ -626,7 +720,7 @@
         if (menuData && menuData.length > 0) {
           menuContainer.innerHTML = '';
           
-          menuData.forEach(section => {
+          menuData.forEach((section, index) => {
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'menu-category';
             
@@ -661,6 +755,13 @@
             categoryDiv.appendChild(categoryHeader);
             categoryDiv.appendChild(categoryItems);
             menuContainer.appendChild(categoryDiv);
+
+            // إضافة مسافة بعد قسم الحلويات والمشروبات
+            if (section.section.includes('الحلويات') || section.section.includes('المشروبات')) {
+              const spacer = document.createElement('div');
+              spacer.className = 'after-desserts';
+              menuContainer.appendChild(spacer);
+            }
           });
           
           // إعادة ربط أحداث النقر على العناصر
@@ -701,9 +802,26 @@
           updateCartDisplay();
           
           // إظهار سلة التسوق العائمة
-          cartFloating.classList.add('active');
+          showCartBar();
         });
       });
+    }
+
+    // عرض شريط السلة مع مؤقت للإخفاء
+    function showCartBar() {
+      cartFloating.classList.add('active');
+      
+      // إلغاء أي مؤقت سابق
+      if (cartTimeout) {
+        clearTimeout(cartTimeout);
+      }
+      
+      // تعيين مؤقت جديد للإخفاء بعد 3 ثواني إذا كانت السلة فارغة
+      if (commandes.length === 0) {
+        cartTimeout = setTimeout(() => {
+          cartFloating.classList.remove('active');
+        }, 3000);
+      }
     }
 
     // تحديث عرض السلة
