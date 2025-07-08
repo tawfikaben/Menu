@@ -711,7 +711,7 @@
       document.getElementById('today-date').textContent = `${day}/${month}/${year}`;
     }
 
-    // دالة لتحميل وعرض القائمة من Firebase
+    // دالة لتحميل وعرض القائمة من Firebase مع تصفية العناصر المخفية
     function loadAndDisplayMenu() {
       database.ref('menu').on('value', (snapshot) => {
         const menuData = snapshot.val();
@@ -721,6 +721,11 @@
           menuContainer.innerHTML = '';
           
           menuData.forEach((section, index) => {
+            // تصفية العناصر المخفية
+            const visibleItems = section.items ? section.items.filter(item => !item.hidden) : [];
+            
+            if (visibleItems.length === 0) return;
+            
             const categoryDiv = document.createElement('div');
             categoryDiv.className = 'menu-category';
             
@@ -734,7 +739,7 @@
             const categoryItems = document.createElement('div');
             categoryItems.className = 'category-items';
             
-            section.items.forEach(item => {
+            visibleItems.forEach(item => {
               const itemDiv = document.createElement('div');
               itemDiv.className = 'menu-item';
               itemDiv.setAttribute('data-plat', item.plat);
@@ -745,7 +750,7 @@
                     <i class="fas fa-${item.icon || 'circle'}"></i>
                     ${item.plat}
                   </div>
-                  <div class="item-desc">${item.description}</div>
+                  <div class="item-desc">${item.description || ''}</div>
                 </div>
                 <div class="item-price">${item.prix} درهم</div>
               `;
@@ -766,6 +771,11 @@
           
           // إعادة ربط أحداث النقر على العناصر
           attachMenuItemsEvents();
+          
+          // إظهار رسالة إذا كانت القائمة فارغة بعد التصفية
+          if (menuContainer.innerHTML === '') {
+            menuContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">لا توجد عناصر في القائمة حالياً</div>';
+          }
         } else {
           menuContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">لا توجد عناصر في القائمة حالياً</div>';
         }
