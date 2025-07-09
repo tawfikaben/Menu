@@ -197,9 +197,11 @@
     .menu-item {
       display: flex;
       justify-content: space-between;
+      align-items: center;
       padding: 1rem;
       border-bottom: 1px dashed var(--gray);
       transition: var(--transition);
+      cursor: pointer;
     }
 
     .menu-item:last-child {
@@ -235,6 +237,33 @@
       color: var(--primary);
       min-width: 60px;
       text-align: left;
+    }
+
+    /* دائرة الاختيار */
+    .item-selector {
+      width: 20px;
+      height: 20px;
+      border: 2px solid var(--primary);
+      border-radius: 50%;
+      margin-left: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition);
+      flex-shrink: 0;
+    }
+
+    .item-selector.selected {
+      background-color: var(--primary);
+    }
+
+    .item-selector.selected::after {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      background-color: var(--white);
+      border-radius: 50%;
     }
 
     /* المسافة تحت الحلويات والمشروبات */
@@ -628,7 +657,7 @@
         <p>مطعم مغربي أصيل منذ 1985</p>
         <div class="footer-address">
           <i class="fas fa-map-marker-alt"></i>
-          <span>شارع المختار السوسي، بيوگرى
+          <span>شارع المختار السوسي، بيوگرى</span>
         </div>
       </div>
       
@@ -745,6 +774,7 @@
               itemDiv.setAttribute('data-plat', item.plat);
               itemDiv.setAttribute('data-prix', item.prix);
               itemDiv.innerHTML = `
+                <div class="item-selector"></div>
                 <div class="item-info">
                   <div class="item-name">
                     <i class="fas fa-${item.icon || 'circle'}"></i>
@@ -802,6 +832,10 @@
             });
           }
           
+          // تحديث علامة التحديد
+          const selector = this.querySelector('.item-selector');
+          selector.classList.add('selected');
+          
           // تأثير مرئي عند الإضافة
           this.style.transform = 'scale(0.95)';
           setTimeout(() => {
@@ -848,6 +882,14 @@
       // تحديث العناصر
       cartCount.textContent = count;
       cartTotal.textContent = total + ' درهم';
+      
+      // تحديث علامات التحديد لجميع العناصر
+      document.querySelectorAll('.menu-item').forEach(item => {
+        const plat = item.getAttribute('data-plat');
+        const selector = item.querySelector('.item-selector');
+        const isInCart = commandes.some(c => c.plat === plat);
+        selector.classList.toggle('selected', isInCart);
+      });
       
       // تحديث قائمة الطلبات في المودال
       const listeCommandes = document.getElementById('listeCommandes');
