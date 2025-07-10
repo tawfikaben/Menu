@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
@@ -10,11 +10,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     :root {
-      --primary: #E94560; /* زهري غامق */
-      --secondary: #0F3460; /* أزرق داكن */
-      --light: #F8F5F2; /* كريمي */
-      --dark: #16213E; /* أزرق ليلي */
-      --gold: #FFD32D; /* ذهبي */
+      --primary: #E94560;
+      --secondary: #0F3460;
+      --light: #F8F5F2;
+      --dark: #16213E;
+      --gold: #FFD32D;
       --text: #2D3748;
       --white: #FFFFFF;
       --gray: #EDF2F7;
@@ -34,6 +34,7 @@
       background-color: var(--light);
       color: var(--text);
       line-height: 1.6;
+      padding-bottom: 80px; /* مساحة لشريط التنقل السفلي */
     }
 
     .container {
@@ -42,39 +43,7 @@
       padding: 0 1rem;
     }
 
-    /* شريط التنقل للجوال */
-    .mobile-nav {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: var(--white);
-      display: flex;
-      justify-content: space-around;
-      padding: 0.8rem 0;
-      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
-      z-index: 100;
-    }
-
-    .nav-item {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      color: var(--text);
-      text-decoration: none;
-      font-size: 0.8rem;
-    }
-
-    .nav-item i {
-      font-size: 1.2rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .nav-item.active {
-      color: var(--primary);
-    }
-
-    /* الهيدر المعدل للجوال */
+    /* الهيدر */
     .hero {
       padding: 5rem 0 3rem;
       background: linear-gradient(135deg, var(--dark), var(--secondary));
@@ -135,7 +104,7 @@
       margin-left: 0.5rem;
     }
 
-    /* قسم القائمة للجوال */
+    /* قسم القائمة */
     .menu-section {
       padding: 2rem 0;
     }
@@ -266,12 +235,7 @@
       border-radius: 50%;
     }
 
-    /* المسافة تحت الحلويات والمشروبات */
-    .after-desserts {
-      height: 20px;
-    }
-
-    /* شريط السلة العائم المعدل */
+    /* شريط السلة العائم */
     .cart-floating {
       position: fixed;
       bottom: 80px;
@@ -332,9 +296,10 @@
       border-radius: 50px;
       font-weight: 600;
       font-size: 0.9rem;
+      cursor: pointer;
     }
 
-    /* نموذج الطلب للجوال */
+    /* نموذج الطلب */
     .order-modal {
       position: fixed;
       top: 0;
@@ -368,6 +333,7 @@
       border: none;
       color: var(--white);
       font-size: 1.5rem;
+      cursor: pointer;
     }
 
     .modal-body {
@@ -407,6 +373,7 @@
       align-items: center;
       justify-content: center;
       margin-left: 0.5rem;
+      cursor: pointer;
     }
 
     .action-btn.remove {
@@ -446,6 +413,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      cursor: pointer;
     }
 
     .submit-btn i {
@@ -478,7 +446,39 @@
       margin-bottom: 1rem;
     }
 
-    /* الفوتر المعدل */
+    /* شريط التنقل السفلي */
+    .mobile-nav {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.8rem 0;
+      box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 100;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 0.8rem;
+    }
+
+    .nav-item i {
+      font-size: 1.2rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .nav-item.active {
+      color: var(--primary);
+    }
+
+    /* الفوتر */
     footer {
       background: var(--dark);
       color: var(--white);
@@ -557,6 +557,12 @@
       .logo {
         font-size: 3rem;
       }
+
+      .menu-list {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 1.5rem;
+      }
     }
   </style>
 </head>
@@ -584,9 +590,6 @@
         <!-- سيتم تعبئة القائمة ديناميكياً هنا -->
         <div class="loading">جاري تحميل القائمة...</div>
       </div>
-
-      <!-- المسافة المطلوبة تحت الحلويات والمشروبات -->
-      <div class="after-desserts" id="afterDesserts"></div>
     </div>
   </section>
 
@@ -603,7 +606,7 @@
     <button class="view-cart" id="viewCart">عرض</button>
   </div>
 
-  <!-- نموذج الطلب (مودال) -->
+  <!-- نموذج الطلب -->
   <div class="order-modal" id="orderModal">
     <div class="modal-header">
       <h3>تأكيد الطلب</h3>
@@ -649,7 +652,7 @@
     </button>
   </div>
 
-  <!-- الفوتر مع معلومات المطعم -->
+  <!-- الفوتر -->
   <footer>
     <div class="container">
       <div class="footer-info">
@@ -673,7 +676,7 @@
     </div>
   </footer>
 
-  <!-- شريط التنقل للجوال -->
+  <!-- شريط التنقل السفلي -->
   <nav class="mobile-nav">
     <a href="#" class="nav-item active">
       <i class="fas fa-home"></i>
@@ -698,30 +701,30 @@
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
   <script>
-    // Firebase Configuration
+    // تهيئة Firebase
     const firebaseConfig = {
       apiKey: "AIzaSyDpSF4J0bsd6T0ImMpse0KQQRADaxiYUQw",
       authDomain: "darhassna-484c3.firebaseapp.com",
       databaseURL: "https://darhassna-484c3-default-rtdb.europe-west1.firebasedatabase.app",
       projectId: "darhassna-484c3",
-      storageBucket: "darhassna-484c3.firebasestorage.app",
+      storageBucket: "darhassna-484c3.appspot.com",
       messagingSenderId: "141393162149",
       appId: "1:141393162149:web:0717227eac221f5ddfc24c"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const database = firebase.database();
 
-    // متغيرات لتخزين الطلبات
-    let commandes = [];
-    let total = 0;
+    // متغيرات التطبيق
+    let cartItems = [];
+    let cartTotal = 0;
     let cartTimeout;
 
     // عناصر DOM
+    const menuContainer = document.getElementById('menuContainer');
     const cartFloating = document.getElementById('cartFloating');
     const cartCount = document.getElementById('cartCount');
-    const cartTotal = document.getElementById('cartTotal');
+    const cartTotalEl = document.getElementById('cartTotal');
     const viewCartBtn = document.getElementById('viewCart');
     const orderModal = document.getElementById('orderModal');
     const closeModalBtn = document.getElementById('closeModal');
@@ -729,9 +732,11 @@
     const confirmation = document.getElementById('confirmation');
     const confirmationText = document.getElementById('confirmationText');
     const closeConfirmationBtn = document.getElementById('closeConfirmation');
-    const afterDesserts = document.getElementById('afterDesserts');
+    const commandeForm = document.getElementById('commandeForm');
+    const listeCommandes = document.getElementById('listeCommandes');
+    const totalCommande = document.getElementById('totalCommande');
 
-    // دالة لعرض تاريخ اليوم بالأرقام الفرنسية
+    // دالة لعرض تاريخ اليوم
     function displayTodayDate() {
       const today = new Date();
       const day = String(today.getDate()).padStart(2, '0');
@@ -740,118 +745,204 @@
       document.getElementById('today-date').textContent = `${day}/${month}/${year}`;
     }
 
-    // دالة لتحميل وعرض القائمة من Firebase مع تصفية العناصر المخفية
-    function loadAndDisplayMenu() {
+    // دالة تحميل القائمة من Firebase
+    function loadMenu() {
       database.ref('menu').on('value', (snapshot) => {
         const menuData = snapshot.val();
-        const menuContainer = document.getElementById('menuContainer');
+        menuContainer.innerHTML = '';
         
         if (menuData && menuData.length > 0) {
-          menuContainer.innerHTML = '';
-          
-          menuData.forEach((section, index) => {
-            // تصفية العناصر المخفية
-            const visibleItems = section.items ? section.items.filter(item => !item.hidden) : [];
+          menuData.forEach((section, sectionIndex) => {
+            if (!section.items) return;
             
+            // تحويل العناصر إلى مصفوفة إذا كانت كائنًا
+            const items = Array.isArray(section.items) ? section.items : Object.values(section.items);
+            
+            // تصفية العناصر المخفية
+            const visibleItems = items.filter(item => !item.hidden);
             if (visibleItems.length === 0) return;
             
-            const categoryDiv = document.createElement('div');
-            categoryDiv.className = 'menu-category';
-            
-            const categoryHeader = document.createElement('div');
-            categoryHeader.className = 'category-header';
-            categoryHeader.innerHTML = `
-              <i class="fas fa-${section.icon || 'utensils'}"></i>
-              ${section.section}
+            // إنشاء قسم القائمة
+            const sectionDiv = document.createElement('div');
+            sectionDiv.className = 'menu-category';
+            sectionDiv.innerHTML = `
+              <div class="category-header">
+                <i class="fas ${section.icon || 'fa-utensils'}"></i>
+                ${section.section}
+              </div>
+              <div class="category-items"></div>
             `;
             
-            const categoryItems = document.createElement('div');
-            categoryItems.className = 'category-items';
+            const itemsContainer = sectionDiv.querySelector('.category-items');
             
-            visibleItems.forEach(item => {
+            // إضافة العناصر
+            visibleItems.forEach((item, itemIndex) => {
               const itemDiv = document.createElement('div');
               itemDiv.className = 'menu-item';
-              itemDiv.setAttribute('data-plat', item.plat);
-              itemDiv.setAttribute('data-prix', item.prix);
+              itemDiv.dataset.id = `${sectionIndex}-${itemIndex}`;
+              itemDiv.dataset.plat = item.plat;
+              itemDiv.dataset.prix = item.prix;
               itemDiv.innerHTML = `
-                <div class="item-selector"></div>
                 <div class="item-info">
                   <div class="item-name">
-                    <i class="fas fa-${item.icon || 'circle'}"></i>
+                    <i class="fas ${item.icon || 'fa-circle'}"></i>
                     ${item.plat}
                   </div>
-                  <div class="item-desc">${item.description || ''}</div>
+                  ${item.description ? `<div class="item-desc">${item.description}</div>` : ''}
                 </div>
                 <div class="item-price">${item.prix} درهم</div>
+                <div class="item-selector"></div>
               `;
-              categoryItems.appendChild(itemDiv);
+              itemsContainer.appendChild(itemDiv);
             });
             
-            categoryDiv.appendChild(categoryHeader);
-            categoryDiv.appendChild(categoryItems);
-            menuContainer.appendChild(categoryDiv);
-
-            // إضافة مسافة بعد قسم الحلويات والمشروبات
-            if (section.section.includes('الحلويات') || section.section.includes('المشروبات')) {
-              const spacer = document.createElement('div');
-              spacer.className = 'after-desserts';
-              menuContainer.appendChild(spacer);
-            }
+            menuContainer.appendChild(sectionDiv);
           });
           
-          // إعادة ربط أحداث النقر على العناصر
-          attachMenuItemsEvents();
-          
-          // إظهار رسالة إذا كانت القائمة فارغة بعد التصفية
-          if (menuContainer.innerHTML === '') {
-            menuContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">لا توجد عناصر في القائمة حالياً</div>';
-          }
+          // إضافة أحداث النقر على العناصر
+          attachItemClickEvents();
         } else {
-          menuContainer.innerHTML = '<div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">لا توجد عناصر في القائمة حالياً</div>';
+          menuContainer.innerHTML = `
+            <div style="text-align: center; padding: 2rem; color: var(--text); opacity: 0.6;">
+              <i class="fas fa-info-circle" style="font-size: 1.5rem; margin-bottom: 1rem;"></i>
+              <p>لا توجد عناصر في القائمة حالياً</p>
+            </div>
+          `;
         }
       });
     }
 
-    // دالة لربط أحداث النقر على عناصر القائمة
-    function attachMenuItemsEvents() {
+    // دالة لإضافة أحداث النقر على عناصر القائمة
+    function attachItemClickEvents() {
       document.querySelectorAll('.menu-item').forEach(item => {
         item.addEventListener('click', function() {
-          const plat = this.getAttribute('data-plat');
-          const prix = parseInt(this.getAttribute('data-prix'));
+          const plat = this.dataset.plat;
+          const prix = parseInt(this.dataset.prix);
+          const itemId = this.dataset.id;
           
-          // التحقق مما إذا كان الطبق موجوداً بالفعل
-          const existingItem = commandes.find(c => c.plat === plat);
+          // التحقق مما إذا كان العنصر موجودًا بالفعل في السلة
+          const existingItem = cartItems.find(item => item.id === itemId);
           
           if (existingItem) {
-            existingItem.quantite += 1;
+            existingItem.quantity += 1;
           } else {
-            commandes.push({
+            cartItems.push({
+              id: itemId,
               plat: plat,
-              quantite: 1,
-              prix: prix
+              prix: prix,
+              quantity: 1
             });
           }
           
-          // تحديث علامة التحديد
-          const selector = this.querySelector('.item-selector');
-          selector.classList.add('selected');
+          // تحديث واجهة المستخدم
+          updateCartUI();
           
           // تأثير مرئي عند الإضافة
-          this.style.transform = 'scale(0.95)';
+          const selector = this.querySelector('.item-selector');
+          selector.classList.add('selected');
           setTimeout(() => {
-            this.style.transform = 'scale(1)';
-          }, 200);
+            selector.classList.remove('selected');
+          }, 300);
           
-          // تحديث العرض
-          updateCartDisplay();
-          
-          // إظهار سلة التسوق العائمة
+          // إظهار سلة التسوق
           showCartBar();
         });
       });
     }
 
-    // عرض شريط السلة مع مؤقت للإخفاء
+    // دالة تحديث واجهة السلة
+    function updateCartUI() {
+      // حساب العدد الإجمالي والمجموع
+      let totalCount = 0;
+      let totalPrice = 0;
+      
+      cartItems.forEach(item => {
+        totalCount += item.quantity;
+        totalPrice += item.quantity * item.prix;
+      });
+      
+      // تحديث العناصر
+      cartCount.textContent = totalCount;
+      cartTotalEl.textContent = totalPrice + ' درهم';
+      
+      // تحديث قائمة الطلبات في المودال
+      updateOrderModal();
+      
+      // إظهار سلة التسوق إذا كانت تحتوي على عناصر
+      if (totalCount > 0) {
+        showCartBar();
+      } else {
+        hideCartBar();
+      }
+    }
+
+    // دالة تحديث نموذج الطلب
+    function updateOrderModal() {
+      listeCommandes.innerHTML = '';
+      
+      if (cartItems.length === 0) {
+        listeCommandes.innerHTML = `
+          <div style="text-align: center; padding: 2rem 0; color: var(--text); opacity: 0.6;">
+            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem;"></i>
+            <p>لا توجد أصناف في السلة</p>
+          </div>
+        `;
+        totalCommande.textContent = 'المجموع: 0 درهم';
+        return;
+      }
+      
+      let totalPrice = 0;
+      
+      cartItems.forEach((item, index) => {
+        const itemTotal = item.quantity * item.prix;
+        totalPrice += itemTotal;
+        
+        const orderItem = document.createElement('div');
+        orderItem.className = 'order-item';
+        orderItem.innerHTML = `
+          <div>${item.plat}</div>
+          <div style="font-weight: 700;">${itemTotal} درهم</div>
+          <div class="item-actions">
+            <button class="action-btn remove" data-index="${index}">
+              <i class="fas fa-trash"></i>
+            </button>
+            <button class="action-btn" data-index="${index}" data-action="decrease">
+              <i class="fas fa-minus"></i>
+            </button>
+            <span style="margin: 0 0.5rem;">${item.quantity}</span>
+            <button class="action-btn" data-index="${index}" data-action="increase">
+              <i class="fas fa-plus"></i>
+            </button>
+          </div>
+        `;
+        listeCommandes.appendChild(orderItem);
+      });
+      
+      totalCommande.textContent = `المجموع: ${totalPrice} درهم`;
+      
+      // إضافة أحداث للأزرار في المودال
+      document.querySelectorAll('.action-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+          const index = parseInt(this.dataset.index);
+          
+          if (this.classList.contains('remove')) {
+            cartItems.splice(index, 1);
+          } else if (this.dataset.action === 'increase') {
+            cartItems[index].quantity += 1;
+          } else if (this.dataset.action === 'decrease') {
+            if (cartItems[index].quantity > 1) {
+              cartItems[index].quantity -= 1;
+            } else {
+              cartItems.splice(index, 1);
+            }
+          }
+          
+          updateCartUI();
+        });
+      });
+    }
+
+    // دالة إظهار سلة التسوق
     function showCartBar() {
       cartFloating.classList.add('active');
       
@@ -860,170 +951,101 @@
         clearTimeout(cartTimeout);
       }
       
-      // تعيين مؤقت جديد للإخفاء بعد 3 ثواني إذا كانت السلة فارغة
-      if (commandes.length === 0) {
-        cartTimeout = setTimeout(() => {
+      // تعيين مؤقت للإخفاء بعد 5 ثوان إذا لم يكن هناك تفاعل
+      cartTimeout = setTimeout(() => {
+        if (cartItems.length === 0) {
           cartFloating.classList.remove('active');
-        }, 3000);
-      }
-    }
-
-    // تحديث عرض السلة
-    function updateCartDisplay() {
-      // حساب العدد الإجمالي والمجموع
-      let count = 0;
-      total = 0;
-      
-      commandes.forEach(commande => {
-        count += commande.quantite;
-        total += commande.quantite * commande.prix;
-      });
-      
-      // تحديث العناصر
-      cartCount.textContent = count;
-      cartTotal.textContent = total + ' درهم';
-      
-      // تحديث علامات التحديد لجميع العناصر
-      document.querySelectorAll('.menu-item').forEach(item => {
-        const plat = item.getAttribute('data-plat');
-        const selector = item.querySelector('.item-selector');
-        const isInCart = commandes.some(c => c.plat === plat);
-        selector.classList.toggle('selected', isInCart);
-      });
-      
-      // تحديث قائمة الطلبات في المودال
-      const listeCommandes = document.getElementById('listeCommandes');
-      listeCommandes.innerHTML = '';
-      
-      if (commandes.length === 0) {
-        listeCommandes.innerHTML = `
-          <div style="text-align: center; padding: 2rem 0; color: var(--text); opacity: 0.6;">
-            <i class="fas fa-shopping-cart" style="font-size: 2rem; margin-bottom: 1rem;"></i>
-            <p>لا توجد أصناف في السلة</p>
-          </div>
-        `;
-      } else {
-        commandes.forEach((commande, index) => {
-          const sousTotal = commande.quantite * commande.prix;
-          
-          const orderItem = document.createElement('div');
-          orderItem.className = 'order-item';
-          orderItem.innerHTML = `
-            <div>${commande.plat}</div>
-            <div style="font-weight: 700;">${sousTotal} درهم</div>
-            <div class="item-actions">
-              <button class="action-btn remove" data-index="${index}">
-                <i class="fas fa-trash"></i>
-              </button>
-              <button class="action-btn" data-index="${index}" data-action="decrease">
-                <i class="fas fa-minus"></i>
-              </button>
-              <span style="margin: 0 0.5rem;">${commande.quantite}</span>
-              <button class="action-btn" data-index="${index}" data-action="increase">
-                <i class="fas fa-plus"></i>
-              </button>
-            </div>
-          `;
-          listeCommandes.appendChild(orderItem);
-        });
-      }
-      
-      // تحديث المجموع الكلي في المودال
-      document.getElementById('totalCommande').textContent = `المجموع: ${total} درهم`;
-      
-      // إضافة أحداث للأزرار في المودال
-      document.querySelectorAll('.action-btn.remove').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const index = parseInt(this.getAttribute('data-index'));
-          commandes.splice(index, 1);
-          updateCartDisplay();
-        });
-      });
-      
-      document.querySelectorAll('.action-btn:not(.remove)').forEach(btn => {
-        btn.addEventListener('click', function() {
-          const index = parseInt(this.getAttribute('data-index'));
-          const action = this.getAttribute('data-action');
-          
-          if (action === 'increase') {
-            commandes[index].quantite += 1;
-          } else if (action === 'decrease' && commandes[index].quantite > 1) {
-            commandes[index].quantite -= 1;
-          } else if (action === 'decrease' && commandes[index].quantite === 1) {
-            commandes.splice(index, 1);
-          }
-          
-          updateCartDisplay();
-        });
-      });
-    }
-
-    // أحداث النقر على الأزرار
-    viewCartBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      orderModal.classList.add('active');
-    });
-    
-    closeModalBtn.addEventListener('click', function(e) {
-      e.preventDefault();
-      orderModal.classList.remove('active');
-    });
-    
-    cartNavItem.addEventListener('click', function(e) {
-      e.preventDefault();
-      orderModal.classList.add('active');
-    });
-    
-    closeConfirmationBtn.addEventListener('click', function() {
-      confirmation.classList.remove('active');
-    });
-
-    // عند تحميل الصفحة
-    document.addEventListener('DOMContentLoaded', function() {
-      // عرض تاريخ اليوم بالأرقام الفرنسية
-      displayTodayDate();
-      
-      // تحميل وعرض القائمة من Firebase
-      loadAndDisplayMenu();
-      
-      // معالجة إرسال النموذج
-      document.getElementById('commandeForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        const table = document.getElementById('table').value;
-        const notes = document.getElementById('notes').value;
-        
-        if (!table || commandes.length === 0) {
-          alert('الرجاء تحديد رقم الطاولة وإضافة طلب واحد على الأقل');
-          return;
         }
-        
-        // إرسال البيانات إلى Firebase
-        database.ref('commandes').push({
-          table: table,
-          notes: notes,
-          commandes: commandes,
-          total: total,
-          timestamp: firebase.database.ServerValue.TIMESTAMP,
-          statut: 'في الانتظار'
-        }).then(() => {
+      }, 5000);
+    }
+
+    // دالة إخفاء سلة التسوق
+    function hideCartBar() {
+      cartFloating.classList.remove('active');
+    }
+
+    // دالة إرسال الطلب
+    function submitOrder(tableNumber, notes) {
+      // التحقق من وجود عناصر في السلة
+      if (cartItems.length === 0) {
+        alert('الرجاء إضافة عناصر إلى السلة قبل التأكيد');
+        return;
+      }
+      
+      // إعداد بيانات الطلب
+      const orderData = {
+        table: tableNumber,
+        notes: notes || '',
+        items: cartItems,
+        total: cartItems.reduce((sum, item) => sum + (item.prix * item.quantity), 0),
+        timestamp: firebase.database.ServerValue.TIMESTAMP,
+        status: 'في الانتظار'
+      };
+      
+      // إرسال الطلب إلى Firebase
+      database.ref('orders').push(orderData)
+        .then(() => {
           // عرض رسالة التأكيد
-          confirmationText.innerHTML = `
-            <p>رقم الطاولة: <strong>${table}</strong></p>
-            <p style="margin: 1rem 0;">المجموع: <strong>${total} درهم</strong></p>
-            ${notes ? `<p>ملاحظات: ${notes}</p>` : ''}
-          `;
-          confirmation.classList.add('active');
+          showConfirmation(tableNumber, orderData.total, notes);
           
-          // إعادة تعيين النموذج
-          commandes = [];
-          updateCartDisplay();
-          this.reset();
+          // تفريغ السلة
+          cartItems = [];
+          updateCartUI();
+          
+          // إغلاق نموذج الطلب
           orderModal.classList.remove('active');
-          cartFloating.classList.remove('active');
-        }).catch(error => {
+        })
+        .catch(error => {
           alert('حدث خطأ أثناء إرسال الطلب: ' + error.message);
         });
+    }
+
+    // دالة عرض رسالة التأكيد
+    function showConfirmation(tableNumber, total, notes) {
+      confirmationText.innerHTML = `
+        <p>رقم الطاولة: <strong>${tableNumber}</strong></p>
+        <p style="margin: 1rem 0;">المجموع: <strong>${total} درهم</strong></p>
+        ${notes ? `<p>ملاحظات: ${notes}</p>` : ''}
+      `;
+      confirmation.classList.add('active');
+    }
+
+    // تهيئة التطبيق عند تحميل الصفحة
+    document.addEventListener('DOMContentLoaded', () => {
+      // عرض تاريخ اليوم
+      displayTodayDate();
+      
+      // تحميل القائمة
+      loadMenu();
+      
+      // أحداث النقر على أزرار السلة
+      viewCartBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        orderModal.classList.add('active');
+      });
+      
+      cartNavItem.addEventListener('click', (e) => {
+        e.preventDefault();
+        orderModal.classList.add('active');
+      });
+      
+      closeModalBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        orderModal.classList.remove('active');
+      });
+      
+      closeConfirmationBtn.addEventListener('click', () => {
+        confirmation.classList.remove('active');
+      });
+      
+      // إرسال النموذج
+      commandeForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        
+        const tableNumber = document.getElementById('table').value;
+        const notes = document.getElementById('notes').value;
+        
+        submitOrder(tableNumber, notes);
       });
     });
   </script>
